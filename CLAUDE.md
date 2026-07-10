@@ -38,9 +38,68 @@ checked in here exist anywhere.
 
 ## What NOT to do
 
-- Don't restore the Python loaders or the abandoned basic-RBC
-  Bayes-vs-Deep-Learning code — both were deliberately dropped (see
-  README's "What was deliberately left out").
+- Don't restore the Python loaders — deliberately dropped (see README's
+  "What was deliberately left out").
 - Don't add files back from the original working repo without checking
   they're actually referenced by `writing/*.qmd` first — this repo is
   intentionally minimal.
+- Don't silently re-add the DL+Indirect-Inference code (see below) without
+  discussing it first — it's kept out of the reproducible pipeline on
+  purpose, but the approach itself is meant to be revisited later.
+
+## DL + Indirect Inference (discarded methodology — kept for future work)
+
+`writing/03_metodologies.qmd` §"Aproximació explorada: Inferència Indirecta
+amb Aprenentatge Profund" (`#sec-dl-ii`) documents, narratively only, an
+alternative estimation approach that was partially built and then dropped in
+favor of the Bayesian/NUTS route used everywhere else in this project. The
+text explicitly flags it as "a very interesting avenue to explore in future
+work" — that's the intent for keeping this note.
+
+**What it was:** estimate a *basic* RBC model (not Orsi-Turino — this predates
+the underground-economy extension) by combining:
+
+1. A **deep-learning solver** (Maliar, Maliar & Winant 2021 "AiO" — All-in-One
+   operator) approximating the policy functions `(c_t, n_t) = Ψ_θ(k_{t-1}, A_t)`
+   with a small MLP (`Lux.jl`), trained by minimizing Euler-equation residuals
+   via ADAM. The AiO trick: draw *two* independent future shock realizations
+   and multiply the two residuals instead of squaring an expectation, which
+   avoids nested Monte Carlo integration inside the loss.
+2. **Indirect Inference** (Gouriéroux, Monfort & Renault 1993) as the outer
+   loop: estimate structural parameters `Θ = (α, β, δ, γ, ρ)` by matching
+   VAR(1) coefficients on simulated data (from the trained network) against
+   VAR(1) coefficients on real/simulated observables, minimizing a quadratic
+   distance `J(Θ)` with Nelder-Mead (non-differentiable objective, since each
+   evaluation retrains the network stochastically).
+
+**Where the code is:** deleted from disk, but recoverable from the *original*
+working repo's git history (not this repo's):
+```
+git -C <path-to>/RBC-parameter-identification show cb7f190:code/rbc/DL/dl.jl
+```
+That single file has the full pipeline: model definition (`MacroModelling`),
+policy network, AiO training loop, VAR(1) auxiliary model, and the outer
+Nelder-Mead loop. Also check that repo's `outputs/dl_rbc/` and
+`outputs/bayes_rbc/` (not copied here) for the last figures/results produced.
+
+**Why it was actually dropped (beyond "ran out of time"):** the last run's
+diagnostics, in the old repo at `outputs/dl_rbc/resultats_dl_{sim,real}.txt`,
+show real problems, not just unfinished polish — worth knowing before
+resuming this:
+- On simulated data (known ground truth): parameter recovery was mediocre
+  (`γ` off by 24.5%, `σ_ε` off by 110%; `α, β, δ, ρ` within ~1-12%).
+- Gouriéroux/Monfort/Renault (1993) diagnostic tests — both the global
+  specification test and the proxy-consistency test — **strongly rejected
+  H₀** (p ≈ 0.0000) on both simulated and real data, meaning the chosen
+  VAR(1) auxiliary moments were not actually well-identified/consistent for
+  this model as implemented. Several individual moment z-scores were huge
+  outliers (e.g. `n̄`, `y/i`, `σ(ŷ)` on simulated data).
+- One inconsistency between code and text worth resolving if this is
+  revived: the text (`03_metodologies.qmd` line ~96) says the network uses
+  `ReLU` hidden activations; the actual `dl.jl` code uses `tanh`.
+
+If this is picked back up for the paper, it would need: fixing/replacing the
+auxiliary-moment set (the VAR(1) choice looks under-identified per the GMR
+tests above), re-validating the AiO training loop's convergence, and likely
+extending it to the full Orsi-Turino model rather than the basic RBC toy
+model it was built against.
