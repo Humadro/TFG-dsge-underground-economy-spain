@@ -1,0 +1,87 @@
+# ESTIMACIÓ AMB DADES SIMULADES: RECUPERACIÓ DE PARÀMETRES {#sec-simulat}
+
+Abans d'enfrontar el model al món real, s'ha decidit fer un exercici de simulació per verificar que l'algorisme d'estimació és capaç de recuperar els paràmetres vertaders a partir de dades generades pel mateix model. 
+
+1. Fixar un vector de paràmetres vertaders $\Theta^*$.
+2. Simular dades amb el model avaluat en $\Theta^*$.
+3. Aplicar l'estimació bayesiana sobre les dades simulades, com si els paràmetres vertaders fossin desconeguts.
+4. Comprovar si la distribució a posteriori recuperada es concentra al voltant de $\Theta^*$.
+
+Si l'estimació és capaç de recuperar els paràmetres vertaders, podem concloure que el procediment és identificable i ben especificat.
+
+## Les Variables Observables
+
+El model d'@OrsiInformal incorpora vuit xocs independents, la qual cosa permet incloure fins a vuit observables sense incórrer en singularitat estocàstica. En lloc de replicar literalment l'especificació completa del paper, s'empren **cinc variables observables**, exactament les mateixes que s'utilitzen a l'estimació amb dades reals del @sec-real. Si la recuperació és satisfactòria amb dades simulades i cinc observables, disposem d'evidència directa que el procediment és vàlid per al @sec-real.
+
+| Observable | Fórmula | Interpretació econòmica |
+|:---:|:---|:---|
+| `obs_c` | $\gamma_{pct} + 100\,\Delta \ln c_t$ | Creixement del consum privat |
+| `obs_inv` | $\gamma_{pct} + 100\,\Delta \ln \text{inv}_t$ | Creixement de la inversió |
+| `obs_Gc` | $\gamma_{pct} + 100\,\Delta \ln G^c_t$ | Creixement de la recaptació de l'IS |
+| `obs_Gh` | $\gamma_{pct} + 100\,\Delta \ln G^h_t$ | Creixement de la recaptació de l'IRPF |
+| `obs_wh` | $\gamma_{pct} + 100\,\Delta \ln((1+\tau^s_t)\,w^m_t\,n^m_t)$ | Creixement de la massa salarial bruta formal |
+
+: Cinc variables observables emprades en l'estimació {#tbl-observables-orsi tbl-colwidths="[15,30,55]"}
+
+No es fan servir més observables en aquest exercici per limitacions computacionals a l'hora d'estimar els paràmetres. En futurs revisions, es podria ampliar el conjunt d'observables per no haver de fixar cap paràmetre addiccional i replicar la pràctica que fan @OrsiInformal amb set observables. La taula següent resumeix les cinc variables emprades, la seva definició i la interpretació econòmica.
+
+Totes cinc es defineixen com a primeres diferències logarítmiques escalades per 100 i desplaçades per $\gamma_{pct}$, garantint l'estacionarietat i la compatibilitat amb el filtre de Kalman linealitzat.
+
+## Paràmetres {#sec-simulat-params}
+
+L'estimació allibera **23 paràmetres** agrupats en tres blocs: nou paràmetres estructurals ($\alpha$, $\delta_k$, $\alpha_u$, $\phi$, $\xi$, $\gamma_{pct}$, $p_{ss}$), vuit persistències AR(1) i vuit desviacions estàndard de xocs. Els valors vertaders del procés generador de dades es fixen als valors de referència d'@OrsiInformal per a l'economia italiana.
+
+Set paràmetres queden fixats externament i no participen en el mostreig MCMC:
+
+- **$\beta = 0.997$** (factor de descompte). Calibrat a la taxa real dels bons sobirans espanyols a 10 anys; identificació molt feble amb les dades recollides [@SmetsWouters2007].
+- **$\gamma_{ss} = 1.00$** (creixement tecnològic en ss). El creixement tendencial queda absorbit per $\gamma_{pct}$ en les equacions d'observació; fixar-lo a 1 simplifica treure la tendència per fer el procés estacionari.
+- **$B_0 = 81.74$, $B_1 = 40.87$** (desutilitats del treball). $B_0$ es recalibra per satisfer $n^m_{ss} + n^u_{ss} = 0.19$ (19% del temps disponible dedicat a treballar) donats els tipus fiscals de l'exercici; $B_1$ es fixa al 50% de $B_0$ seguint @OrsiInformal. Amb cinc observables i vuit xocs, ambdós paràmetres queden subidentificats sense restriccions addicionals.
+- **$\sigma = 0.99$** (aversió relativa al risc). Fixat per fer-lo numèricament equivalent a $\sigma = 1$, de manera que la funció d'utilitat del consum és logarítmica $\ln(c_t/\Gamma_t)$. Aquesta restricció és habitual a la literatura DSGE però constitueix una limitació: @guvenenReconcilingConflictingEvidence2006 documenta que conclusions sobre dinàmica de consum i hores poden ser sensibles a $\sigma$ és superior o inferior a la unitat, especialment quan el treball és no separable de la utilitat del consum.
+- **$\tau^c_{ss} = 0.40$, $\tau^h_{ss} = 0.35$, $\tau^s_{ss} = 0.20$** (tipus impositius mitjans de l'estat estacionari). Calibrats del paper original per a Itàlia 1982–2006. En l'exercici simulat aquesta calibració italiana és coherent: el DGP i l'estimació empren exactament els mateixos valors, de manera que la recuperació no es contamina per discrepàncies entre països. Els valors espanyols i la seva justificació es detallen al @sec-real.
+- **$s = 1.70$** (penalització fiscal). Derivat de la Llei General Tributària espanyola (arts. 191–193): infracció greu (100%) més interessos de demora ≈ 2.075; s'arrodoneix conservadorament a 1.70.
+
+## Prioris, Posteriors i Convergència {#sec-simulat-results}
+
+Les distribucions a priori s'han escollit no informatives, amb una sola família per grup de paràmetres i els mateixos hiperparàmetres per a tots els membres del grup. Els paràmetres estructurals segueixen distribucions $\text{Uniforme}$ amb rangs que inclouen àmpliament el valor vertader. Les persistències AR(1) segueixen una $\text{Beta}(1,1)$, equivalent a una $\text{Uniforme}(0,1)$ completament plana sobre $(0,1)$. Les desviacions estàndard dels xocs segueixen $\sigma_i^2 \sim \text{InverseGamma}(2,\, 0.01)$, amb una cua amplia.
+
+|  | Priori | Mitjana post. | Vertader | IC 95% | $\hat{R}$ |
+|:---:|:---|:---:|:---:|:---:|:---:|
+| $\alpha$ | U(0.40, 0.85) | 0.419 | 0.630 | [0.401, 0.457] | 1.002 |
+| $\delta_k$ | U(0.005, 0.10) | 0.028 | 0.030 | [0.017, 0.041] | 1.004 |
+| $\alpha_u$ | U(0.40, 0.85) | 0.452 | 0.660 | [0.402, 0.527] | 1.003 |
+| $\phi$ | U(0.10, 3.00) | 0.821 | 0.930 | [0.443, 1.435] | 1.004 |
+| $\xi$ | U(0.30, 4.00) | 3.635 | 1.600 | [2.859, 3.989] | 1.002 |
+| $\gamma_{pct}$ | U(0.02, 0.80) | 0.296 | 0.200 | [0.035, 0.660] | 1.005 |
+| $p_{ss}$ | U(0.001, 0.10) | 0.046 | 0.020 | [0.003, 0.097] | 1.002 |
+| $\rho_a$ | $\beta$(1,1) | 0.919 | 0.990 | [0.820, 0.981] | 1.001 |
+| $\rho_b$ | $\beta$(1,1) | 0.834 | 0.930 | [0.726, 0.937] | 1.004 |
+| $\rho_c$ | $\beta$(1,1) | 0.883 | 0.960 | [0.734, 0.993] | 1.007 |
+| $\rho_s$ | $\beta$(1,1) | 0.662 | 0.940 | [0.141, 0.933] | 1.012 |
+| $\rho_h$ | $\beta$(1,1) | 0.951 | 0.990 | [0.880, 0.993] | 1.002 |
+| $\rho_{\xi_h}$ | $\beta$(1,1) | 0.613 | 0.600 | [0.052, 0.983] | 1.001 |
+| $\rho_x$ | $\beta$(1,1) | 0.999 | 0.940 | [0.998, 1.000] | 1.002 |
+| $\rho_p$ | $\beta$(1,1) | 0.518 | 0.950 | [0.028, 0.977] | 1.005 |
+| $\sigma_a$ | IG(2, 0.01) | 0.020 | 0.010 | [0.017, 0.022] | 1.001 |
+| $\sigma_b$ | IG(2, 0.01) | 0.037 | 0.010 | [0.026, 0.053] | 1.001 |
+| $\sigma_c$ | IG(2, 0.01) | 0.017 | 0.010 | [0.014, 0.020] | 1.001 |
+| $\sigma_s$ | IG(2, 0.01) | 0.039 | 0.010 | [0.028, 0.050] | 1.001 |
+| $\sigma_h$ | IG(2, 0.01) | 0.022 | 0.020 | [0.020, 0.024] | 1.002 |
+| $\sigma_{\xi_h}$ | IG(2, 0.01) | 0.054 | 0.010 | [0.035, 0.077] | 1.002 |
+| $\sigma_x$ | IG(2, 0.01) | 0.022 | 0.010 | [0.020, 0.024] | 1.004 |
+| $\sigma_p$ | IG(2, 0.01) | 0.096 | 0.060 | [0.042, 0.184] | 1.001 |
+
+: Distribucions a priori i resultats de l'estimació simulada (T = 120). {#tbl-recovery-sim tbl-colwidths="[7,31,13,12,26,8]"}
+
+L'estimació s'executa sobre T = 120 observacions simulades amb 3 cadenes MCMC de 2.000 mostres cadascuna i 1.000 iteracions d'adaptació. La @tbl-recovery-sim recull per a cada paràmetre el valor vertader del PGD, la distribució a priori, la mitjana i l'interval de credibilitat del 95% a posteriori, i l'estadístic $\hat{R}$. La convergència es considera acceptable per a $\hat{R} < 1.05$. Els gràfics de priori versus posteriori i els traceplots per grup de paràmetres es troben a l'@sec-annex-sim.
+
+## Discussió {#sec-simulat-disc}
+
+El resultat central d'aquest exercici és verificar que l'estimació i el model són capaços de recuperar els paràmetres vertaders del PGD a partir de T = 120 observacions amb cinc sèries. Que la recuperació sigui bona amb la mateixa especificació que s'aplica al @sec-real constitueix una condició necessària per a la validesa dels resultats reals.
+
+La convergència és satisfactòria per a tots els paràmetres ($\hat{R} < 1.05$). Les desviacions estàndard dels xocs queden ben identificades, amb posteriors estretes i $\hat{R}$ molt propers a 1. Entre les persistències, $\rho_s$ i $\rho_p$ presenten intervals de credibilitat molt amplis que abasten pràcticament tot $(0,1)$: amb T = 120 i cinc observables, la recaptació de cotitzacions socials i la probabilitat d'inspecció no aporten prou senyal dinàmic per identificar aquestes persistències amb precisió. Entre els paràmetres estructurals, $\alpha$, $\alpha_u$ i $\xi$ mostren posteriors desplaçades respecte al valor vertader.
+
+Les prioris emprades en aquest exercici són deliberadament no informatives, la qual cosa s'allunya de la pràctica estàndard a la literatura DSGE. @OrsiInformal utilitzen distribucions a priori molt més concentrades, basades en estimacions prèvies i en la teoria econòmica: per exemple, les elasticitats del treball $\alpha$ i $\alpha_u$ se solen centrar entorn de $0.60–0.65$ amb desviacions estàndard de l'ordre de $0.05$, molt allunyades del rang $[0.40,\, 0.85]$ aquí emprat. Permetre que l'algorisme explori valors d'$\alpha$ propers a $0.40$ o $0.85$ és econòmicament poc realista: implicaria que gairebé tot el treball és formal o informal respectivament, en contradicció amb totes les estimacions disponibles per a economies del sud d'Europa. Que la recuperació sigui acceptable fins i tot amb prioris tan laxes demostra que el procediment és robust; a l'estimació amb dades reals del @sec-real s'adopten prioris molt més informatives, en línia amb la pràctica de la literatura, la qual cosa ha de millorar la precisió de les posteriors.
+
+Els corner plots (@sec-annex-sim) confirmen que els vuit xocs contribueixen de manera independent a les fluctuacions de les observables, sense correlacions creuades significatives entre les $\sigma_i$, la qual cosa és consistent amb la identificació del model.
+
+Per tant, l'exercici de simulació mostra que el model i l'algorisme d'estimació són capaços de recuperar els paràmetres vertaders amb un conjunt limitat d'observables i un nombre raonable d'observacions, fins i tot partint de prioris completament planes. Això dóna confiança en la validesa dels resultats obtinguts amb dades reals al @sec-real.

@@ -1,0 +1,13 @@
+variable,label,cf1_pct,cf2_pct,cf3_pct,cf4_pct
+y,PIB total (y),2.937,-3.037,2.916,-2.648
+y_m,Output formal (y_m),4.509,-4.729,4.588,-3.019
+y_u,Output informal (y_u),-5.963,6.54,-6.549,-0.549
+underground_share,Quota submergida (y_u/y),-8.646,9.877,-9.197,2.156
+c,Consum (c),3.663,-3.683,3.586,-0.05
+inv,Inversió (inv),7.176,-6.742,6.985,-7.309
+G_c,Recaptació IS (G_c),-17.743,16.375,-17.46,11.595
+G_h,Recaptació IRPF (G_h),7.826,-7.856,7.907,-2.546
+G_s,Cotitzacions (G_s),6.065,-6.3,6.145,-21.112
+TE,Evasió fiscal (TE),-9.505,10.554,-10.344,-3.634
+G_total,Recaptació total (G),-0.215,-0.268,-0.075,-3.648
+ecv,ECV benestar (%),-3.848,4.203,-3.788,0.201

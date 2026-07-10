@@ -1,0 +1,217 @@
+# EL MODEL DSGE AMB ECONOMIA SUBMERGIDA (ORSI, RAGGI I TURINO) {#sec-orsi-turino}
+
+Aquest model suposa una extensió directa del model RBC bàsic presentat al @sec-rbc. L'estructura fonamental és idèntica: agents representatius que maximitzen utilitat, empreses en competència perfecta amb tecnologia Cobb-Douglas, i equilibri de mercat amb buidatge complet. Tanmateix, s'hi introdueix una fricció institucional absent al model base: l'existència d'un sector econòmic submergit on l'activitat no es declara a les autoritats fiscals [@OrsiInformal].
+
+En concret, el model captura dues formes d'informalitat: l'**evasió fiscal empresarial** (producció no declarada al sector submergit $y^u$) i la **participació laboral informal** per part de les llars ($n^u$). Ambdues formen part de la informalitat de producció, on l'empresa és legal però amaga una fracció de la seva activitat per evadir impostos. El model no captura formes d'informalitat com el treball en l'economia de lloguer no declarada, les activitats il·legals o la corrupció. El mecanisme clau és el **risc d'inspecció**: les empreses s'enfronten cada trimestre a una probabilitat $p_t$ de ser auditades i sancionades, que determina el cost esperat de l'evasió i, per tant, quanta activitat s'oculta en equilibri.
+
+Mentre que al capítol @sec-rbc tota l'economia era transparent (una sola productivitat $A_t$, un sol sector de treball $n_t$, sense govern), aquí incorporem tres elements nous que fan el model més ric empíricament:
+
+1. **Dualitat sectorial**: les empreses i les famílies decideixen quina fracció de la seva activitat és formal i quina és submergida, com a resultat d'una optimització explícita.
+
+2. **Política fiscal i sancionadora**: el govern cobra impostos i inspecciona amb probabilitat $p_t$, creant un incentiu a l'evasió.
+
+3. **Heterogeneïtat de xocs**: en lloc del únic xoc de productivitat $\epsilon_t$ del model RBC, el model considera vuit fonts d'incertesa estructural.
+
+El model es divideix en dos sectors: el formal i el submergit [@OrsiInformal]. Totes les transaccions que tenen lloc al sector no oficial s'oculten a les autoritats governamentals per evadir el pagament d'impostos. Tanmateix, operar en la clandestinitat comporta un risc, ja que els agents s'enfronten a una probabilitat de ser detectats i sancionats de manera severa.
+
+
+## El Govern
+
+El sector públic d'aquest model no emet deute i manté un pressupost equilibrat període a període per finançar el seu consum ($g_t$). Aquesta despesa es finança mitjançant la recaptació efectiva, que prové de tres grans bases imposables, les quals es veuen minvades per l'evasió:
+
+1.  **Impostos sobre la Renda ($G^h_t$):** Recaptats únicament sobre la renda declarada per les famílies (salaris i lloguers de capital regulars).
+
+2.  **Impostos sobre Societats ($G^c_t$):** S'aplica la taxa $\tau^c_t$ sobre els beneficis declarats i, addicionalment, s'ingressen els recursos provinents de les multes (recàrrec $s$) a les empreses auditades amb èxit (proporció $p_t$).
+
+3.  **Seguretat Social ($G^s_t$):** Les cotitzacions s'exigeixen exclusivament sobre la massa salarial de l'ocupació formal.
+
+Formalment, les tres bases de recaptació s'expressen com:
+
+$$
+G^h_t = \tau^h_t \left(w^m_t n^m_t + r^m_t k^m_t\right)
+$$ {#eq-gov-income}
+$$
+G^s_t = \tau^s_t\, w^m_t n^m_t
+$$ {#eq-gov-ss}
+$$
+G^c_t = \tau^c_t \left[(y^m_t - w^m_t n^m_t) + p_t s\left(y^u_t - w^u_t n^u_t\right)\right]
+$$ {#eq-gov-corporate}
+
+
+On $G^c_t$ té dos components: la recaptació sobre el benefici regular net de costos laborals ($y^m - w^m n^m$), i els ingressos de les multes per auditoria sobre el benefici submergit net de costos laborals ($p_t s(y^u - w^u n^u)$). El lloguer del capital no es dedueix de la base imposable perquè les empreses l'abonen dels beneficis nets d'impostos. La restricció de pressupost equilibrat del govern és:
+
+$$
+g_t = G^h_t + G^c_t + G^s_t
+$$ {#eq-gov-budget}
+
+L'evasió fiscal total a l'economia es defineix com la suma dels impostos que teòricament s'haurien d'haver pagat sobre l'activitat econòmica que els agents han ocultat.
+
+$$
+TE_t = \tau^h_t (w^u_t n^u_t + r^u_t k^u_t) + \tau^c_t (y^u_t - w^u_t n^u_t) + \tau^s_t w^u_t n^u_t
+$$ {#eq-tax-evasion}
+
+## Les Empreses
+
+Considerem una economia amb un continu de béns homogenis indexats per $i \in [0,1]$, cadascun produït per una empresa en un entorn de competència perfecta. Les empreses poden decidir quina fracció de la seva producció es duu a terme al sector regular i quina al sector submergit per tal d'evadir impostos. 
+
+La producció regular de l'empresa $i$ ($y^m_{i,t}$) utilitza treball regular ($n^m_{i,t}$) i capital regular ($k^m_{i,t}$) mitjançant una tecnologia estàndard Cobb-Douglas [@OrsiInformal]:
+
+$$
+y^m_{i,t} = A_t (\Gamma_t n^m_{i,t})^\alpha (k^m_{i,t})^{1-\alpha}
+$$ {#eq-prod_reg}
+
+On $A_t$ és un xoc de productivitat purament transitori que afecta la productivitat general del sector oficial, i $\alpha \in (0,1)$ és l'elasticitat de la producció respecte al **treball**, consistent amb la convenció adoptada al @sec-rbc. La variable $\Gamma_t$ representa el progrés tecnològic augmentador del treball, el qual segueix una tendència determinista al llarg del temps ($\Gamma_t = \gamma \Gamma_{t-1}$ amb $\gamma > 1$) i permet que el model capturi el creixement econòmic a llarg termini. 
+
+En competència perfecta, l'empresa del sector regular maximitza beneficis nets d'impostos:
+
+$$
+\max_{n^m_{i,t},\, k^m_{i,t}} \; (1-\tau^c_t)\bigl(y^m_{i,t} - w^m_t n^m_{i,t}\bigr) - (1+\tau^s_t) w^m_t n^m_{i,t} - r^m_t k^m_{i,t}
+$$
+
+Derivant respecte als factors, les condicions de primer ordre per al sector regular donen:
+
+$$
+w^m_t = \frac{\alpha\, y^m_{i,t}}{(1 + \tau^s_t/(1-\tau^c_t))\, n^m_{i,t}}, \qquad r^m_t = (1-\alpha)\frac{y^m_{i,t}}{k^m_{i,t}}
+$$ {#eq-prices_reg}
+
+S'observa que la càrrega fiscal ($\tau^c_t$, $\tau^s_t$) redueix el salari net que l'empresa pot pagar. Aquesta diferència respecte al sector submergit és precisament el que crea l'incentiu a l'evasió.
+
+D'altra banda, la producció submergida ($y^u_{i,t}$) utilitza factors no oficials (treball submergit $n^u_{i,t}$ i capital submergit $k^u_{i,t}$) amb una productivitat pròpia:
+
+$$
+y^u_{i,t} = B_t (\Gamma_t n^u_{i,t})^{\alpha_u} (k^u_{i,t})^{1-\alpha_u}
+$$ {#eq-prod_sub}
+
+On $B_t$ és un xoc de productivitat transitori específic del sector submergit i $\alpha_u \in (0,1]$ n'és l'elasticitat del treball. L'existència de tecnologies i xocs específics per a cada sector permet al model incorporar diferències intersectorials importants en la productivitat, reflectint evidències empíriques com ara l'alta intensitat de mà d'obra poc qualificada en els mercats irregulars. 
+
+L'output total de l'empresa és simplement la suma d'ambdues produccions ($y_{i,t} = y^m_{i,t} + y^u_{i,t}$). Atès que els consumidors no distingeixen entre un bé produït legalment o il·legalment, el preu d'ambdós és el mateix i es normalitza a 1. Donat que l'empresa podria produir-ho tot de forma legal, la decisió de produir en el mercat submergit respon principalment a l'oportunitat d'evadir la càrrega fiscal.
+
+**El problema de l'empresa i la penalització:**
+Operar al mercat oficial té uns costos fiscals. L'empresa paga una taxa d'impost de societats estocàstica $\tau^c_t$ sobre els beneficis i unes contribucions a la seguretat social $\tau^s_t$ sobre els salaris dels treballadors regulars. 
+
+Per desincentivar el frau, el govern duu a terme inspeccions. Cada període, les empreses s'enfronten a una probabilitat $p_t \in (0,1)$ de ser auditades. Si són enxampades ocultant producció, han de pagar l'impost evadit ($\tau^c_t$) multiplicat per un recàrrec o penalització $s > 1$. Donat que els dos sectors utilitzen factors independents, els problemes d'optimització es poden separar. Per al sector submergit, l'empresa tria $n^u_{i,t}$ i $k^u_{i,t}$ per maximitzar els ingressos nets esperats:
+
+$$
+\max_{n^u_{i,t},\, k^u_{i,t}} \; \mathbb{E}_t\!\left[(1 - p_t s\tau^c_t)\bigl(y^u_{i,t} - w^u_t n^u_{i,t}\bigr) - r^u_t k^u_{i,t}\right]
+$$ {#eq-firm-underground}
+
+El terme $(1 - p_t s\tau^c_t)(y^u_{i,t} - w^u_t n^u_{i,t})$ recull els beneficis esperats nets de penalització: amb probabilitat $p_t$, l'empresa és auditada i paga una multa de $s\tau^c_t$ sobre la producció submergida neta de costos laborals ($y^u - w^u n^u$), de manera que els beneficis efectius del sector submergit queden reduïts per aquest factor. Substituint la funció de producció (@eq-prod_sub) i derivant respecte a $k^u_{i,t}$:
+
+$$
+\frac{\partial}{\partial k^u_{i,t}}: \quad (1 - p_t s\tau^c_t)\,(1-\alpha_u)\frac{y^u_{i,t}}{k^u_{i,t}} - r^u_t = 0
+$$
+
+Reordenant, s'obté la condició de primer ordre clau per a la demanda de capital submergit:
+
+$$
+(1 - \alpha_u) \frac{y^u_{i,t}}{k^u_{i,t}} = \frac{r^u_t}{1 - p_t s \tau^c_t}
+$$ {#eq-capital_sub}
+
+Aquesta equació (\ref{eq-capital_sub}) és fonamental per entendre l'existència mateixa del sector informal. Indica que la condició $1 - p_t s \tau^c_t > 0$ és estrictament necessària per a una solució interior on existeixi producció submergida. Si aquesta expressió fos negativa (per exemple, si la probabilitat d'inspecció $p_t$ o la multa $s$ fossin molt altes), les empreses no tindrien cap incentiu per contractar factors irregulars, ja que els ingressos reals esperats del sector submergit serien negatius, eliminant l'evasió fiscal per complet.
+
+## Les Famílies
+
+La família representativa pren decisions intertemporals de consum, estalvi i oferta laboral per tal de maximitzar la seva utilitat esperada. La funció d'utilitat s'expressa com:
+
+$$
+U^h_t = \mathbb{E}_0 \sum_{t=0}^{\infty} \beta^t \left[ \frac{(c_t/\Gamma_t)^{1-\sigma}-1}{1-\sigma} - \xi_t^h B_0 \frac{(n^m_t + n^u_t)^{1+\xi}}{1+\xi} - B_1 \frac{(n^u_t)^{1+\phi}}{1+\phi} \right]
+$$ {#eq-orsi-utility}
+
+On $\beta$ és el factor de descompte. $\sigma$ és simultàniament el coeficient d'aversió relativa al risc i la inversa de l'elasticitat de substitució intertemporal del consum: governa la velocitat a la qual les llars volen suavitzar el consum al llarg del temps.^[En l'estimació s'imposa $\sigma = 1$, de manera que la funció d'utilitat del consum pren la forma logarítmica $\ln(c_t/\Gamma_t)$, obtinguda per la regla de L'Hôpital quan $\sigma \to 1$. La justificació i les implicacions d'aquesta restricció es discuteixen a l'@sec-real.] $\xi$ i $\phi$, conjuntament amb $B_0$ i $B_1$, controlen l'**elasticitat de Frisch** de l'oferta laboral (la sensibilitat de les hores treballades davant d'un canvi en el salari real mantinguda la utilitat marginal del consum constant): $\xi$ determina la convexitat de la desutilitat de les hores totals, mentre $\phi$ fa el mateix específicament per a les hores informals. $\xi_t^h$ és un xoc transitori de l'oferta laboral. El consum s'escala pel progrés tecnològic $\Gamma_t$ per assegurar l'existència d'una senda de creixement equilibrat.
+
+A diferència del model RBC estàndard, aquí l'estructura de la desutilitat del treball és bisectorial. El primer terme de desutilitat, escalat per $B_0$, depèn de les hores totals treballades ($n^m_t + n^u_t$), implicant perfecta mobilitat laboral entre sectors. El segon terme, ponderat per $B_1$, introdueix un cost real específic per treballar en la informalitat que captura costos associats al mercat negre, com la manca d'assegurança social, d'atur o de protecció sanitària.
+
+**Acumulació de capital i restricció pressupostària:**
+La família posseeix el capital de l'economia ($k_t$) i decideix quant invertir-hi ($i_t$). L'evolució del capital està subjecta a un xoc estocàstic específic d'inversió ($\xi^x_t$), el qual pertorba l'eficiència amb què el bé final es transforma en capital físic:
+
+$$
+k_{t+1} = \xi^x_t i_t + (1-\delta_k)k_t
+$$ {#eq-orsi-capital}
+
+On $\delta_k$ és la taxa de depreciació estàndard. El xoc $\xi^x_t$ s'interpreta com una pertorbació a les condicions financeres o al preu relatiu del capital: quan $\xi^x_t$ cau, la mateixa quantitat d'inversió ($i_t$) genera menys capital nou, com si part dels recursos s'evaporessin en costos d'intermediació o prima de risc del capital. Seguint @SmetsWouters2007, aquest xoc captura variacions en la prima de risc del capital que no provenen de canvis tecnològics directes i que poden estar associades a condicions creditícies.
+
+En l'àmbit pressupostari, les famílies també optimitzen fiscalment. Els ingressos generats al mercat regular ($w^m_t n^m_t + r^m_t k^m_t$) tributen a la taxa d'impost sobre la renda $\tau^h_t$. En canvi, si la família lloga treball o capital al sector submergit, aquests rendiments ($w^u_t n^u_t + r^u_t k^u_t$) queden exempts d'impostos i no es declaren. La restricció pressupostària és, doncs:
+
+$$
+c_t + i_t = (1-\tau^h_t)(w^m_t n^m_t + r^m_t k^m_t) + w^u_t n^u_t + r^u_t k^u_t
+$$ {#eq-orsi-budget}
+
+Per resoldre el problema, substituïm $i_t$ de l'equació de capital (@eq-orsi-capital) a la restricció pressupostària, obtenint $i_t = (k_{t+1} - (1-\delta_k)k_t)/\xi^x_t$. Plantegem el Lagrangià:
+
+$$
+\begin{aligned}
+\mathcal{L} &= \mathbb{E}_0 \sum_{t=0}^{\infty} \beta^t \left[ \frac{(c_t/\Gamma_t)^{1-\sigma}-1}{1-\sigma} - \xi_t^h B_0 \frac{(n^m_t + n^u_t)^{1+\xi}}{1+\xi} - B_1 \frac{(n^u_t)^{1+\phi}}{1+\phi} \right. \\
+&\quad + \left. \lambda_t\!\left((1-\tau^h_t)(w^m_t n^m_t + r^m_t k^m_t) + w^u_t n^u_t + r^u_t k^u_t - c_t - \frac{k_{t+1} - (1-\delta_k)k_t}{\xi^x_t}\right) \right]
+\end{aligned}
+$$
+
+Les condicions de primer ordre respecte a cada variable de control són:
+
+$$
+\partial \mathcal{L}/\partial c_t = 0 \;\Rightarrow\; \lambda_t = \frac{1}{\Gamma_t}\!\left(\frac{c_t}{\Gamma_t}\right)^{-\sigma}
+$$ {#eq-orsi-lambda}
+
+$$
+\partial \mathcal{L}/\partial n^m_t = 0 \;\Rightarrow\; \xi_t^h B_0 (n^m_t + n^u_t)^{\xi} = \lambda_t (1-\tau^h_t) w^m_t
+$$ {#eq-orsi-labor-m}
+
+$$
+\partial \mathcal{L}/\partial n^u_t = 0 \;\Rightarrow\; \xi_t^h B_0 (n^m_t + n^u_t)^{\xi} + B_1 (n^u_t)^{\phi} = \lambda_t w^u_t
+$$ {#eq-orsi-labor-u}
+
+$$
+\partial \mathcal{L}/\partial k_{t+1} = 0 \;\Rightarrow\; \frac{\lambda_t}{\xi^x_t} = \beta\,\mathbb{E}_t\!\left[\lambda_{t+1}\!\left((1-\tau^h_{t+1}) r^m_{t+1} + \frac{1-\delta_k}{\xi^x_{t+1}}\right)\right]
+$$ {#eq-orsi-euler}
+
+L'equació d'Euler (@eq-orsi-euler) és la versió generalitzada de l'equació (@eq-euler) del model RBC: ara el preu d'ombra del capital queda escalat per l'eficiència de la inversió $\xi^x_t$, i el retorn net del capital formal es veu reduït pel tipus impositiu $\tau^h_{t+1}$.
+
+Restant la CPO del treball formal (@eq-orsi-labor-m) de la del treball informal (@eq-orsi-labor-u), el terme comú de desutilitat s'elimina i s'obté:
+
+$$
+n^u_t = \left( \frac{\lambda_t}{B_1} [w^u_t - (1 - \tau^h_t)w^m_t] \right)^{\frac{1}{\phi}} \quad \text{si} \quad w^u_t - (1 - \tau^h_t)w^m_t > 0
+$$ {#eq-labor_supply_sub}
+
+Aquesta equació revela el mecanisme de decisió de l'agent: les famílies només oferiran serveis laborals al sector informal si el salari brut que hi guanyen ($w^u_t$) supera el salari net d'impostos del sector regular ($(1-\tau^h_t)w^m_t$). Si els impostos sobre la renda $\tau^h_t$ pugen, la diferència s'eixampla i la participació en l'economia submergida augmenta. Així mateix, un increment del paràmetre $B_1$ (per exemple, penes més dures per treballar en negre) requereix un diferencial salarial més alt per convèncer les famílies a treballar en la informalitat.
+
+## Els xocs estructurals.
+
+L'abundància de xocs estructurals és el que permet que el model s'ajusti bé a les sèries temporals observades en la realitat. Mentre que el nostre RBC previ només confiava en un xoc tecnològic, el model d'Orsi et al. considera vuit fonts d'incertesa que governen la macroeconomia:
+
+* Productivitat del sector regular ($A_t$) i del sector submergit ($B_t$).
+* Taxes impositives: societats ($\tau^c_t$), seguretat social ($\tau^s_t$) i renda personal ($\tau^h_t$).
+* Factors reals: eficiència de la inversió ($\xi^x_t$) i preferència per l'oferta laboral ($\xi^h_t$).
+* Política punitiva: la intensitat del monitoratge governamental ($p_t$).
+
+Tots aquests elements s'agrupen en el vector $z_t = (\ln A_t,\, \ln B_t,\, \ln\tau^c_t,\, \ln\tau^s_t,\, \ln\tau^h_t,\, \ln\xi^x_t,\, \ln\xi^h_t,\, \ln p_t)^\top$ i es modelen conjuntament com un VAR(1) estacionari en logaritmes:
+
+$$
+z_t = (I - R)\,\bar{z} + R\, z_{t-1} + \eta_t, \qquad \eta_t \sim \mathcal{N}(0,\,\Sigma)
+$$ {#eq-var1}
+
+On $\bar{z}$ és el vector de mitjanes a llarg termini, $R = \mathrm{diag}(\rho_A, \rho_B, \rho_{\tau^c}, \rho_{\tau^s}, \rho_{\tau^h}, \rho_x, \rho_h, \rho_p)$ és una matriu diagonal de coeficients d'autocorrelació, i $\Sigma = \mathrm{diag}(\sigma_A^2, \sigma_B^2, \ldots, \sigma_p^2)$ és la matriu de variàncies dels xocs (assumits independents entre si). Cada xoc retorna gradualment a la seva mitjana a un ritme determinat pel coeficient de persistència corresponent. 
+
+## Equilibri Simètric i Resolució
+
+L'equilibri del model s'analitza sota la hipòtesi d'equilibri simètric, on totes les empreses i famílies són idèntiques i prenen les mateixes decisions òptimes. Les condicions de buidatge de mercat garanteixen que l'oferta s'iguala a la demanda. En particular, la restricció agregada de recursos per als béns finals és:
+
+$$
+c_t + i_t + g_t = y_t
+$$ {#eq-orsi-clearing}
+
+A més, el factor total disponible es reparteix entre els dos mercats (per exemple, $k_t = k^m_t + k^u_t$). 
+
+A causa del supòsit de creixement sostingut (conduït per la variable de progrés tecnològic $\Gamma_t$), el model ha de transformar-se per aconseguir variables estacionàries que no creixin cap a l'infinit. Totes les variables amb tendència es divideixen pel factor $\Gamma_t$ (esdevenint variables "detrended", indicades amb un barret, com $\hat{c}_t = c_t/\Gamma_t$). 
+
+Un cop el sistema es troba en un estat estacionari determinista, les complexes equacions no lineals es resolen mitjançant una log-linealització de primer ordre. Aquest procediment retorna un sistema lineal en format espai-estat, clau per poder recuperar posteriorment la dinàmica inobservable de l'economia submergida a partir de les dades oficials mitjançant el Filtre de Kalman i la inferència Bayesiana.
+
+El model d'@OrsiInformal queda completament definit pel sistema d'equacions derivades en les seccions anteriors. Formalment, un equilibri simètric és una seqüència de variables que satisfà simultàniament:
+
+1. Les **funcions de producció** dels dos sectors (@eq-prod_reg i @eq-prod_sub).
+2. Les **condicions d'optimalitat de les empreses**: preus dels factors del sector regular (@eq-prices_reg) i la condició del capital submergit (@eq-capital_sub).
+3. L'**equació d'Euler** (@eq-orsi-euler), que governa la dinàmica intertemporal del consum.
+4. Les **condicions d'oferta laboral** dels sectors formal (@eq-orsi-labor-m) i informal (@eq-labor_supply_sub).
+5. L'**acumulació de capital** (@eq-orsi-capital) i la **restricció de recursos** (@eq-orsi-clearing).
+6. La **restricció pressupostària del govern** (@eq-gov-budget).
+7. Els **processos estocàstics** dels vuit xocs estructurals (@eq-var1).
+
+Aquesta secció ha presentat la formulació completa del model DSGE amb economia submergida d'@OrsiInformal. Es pot trobar a l'@sec-annex-orsi un resum dels paràmetres (@tbl-orsi-params) i variables (@tbl-orsi-vars) del model. La següent secció (@sec-simulat) fa un exercici de recuperació dels paràmetres amb el model i dades simulades. El @sec-real posterior aplica la metodologia a dades reals d'Espanya.

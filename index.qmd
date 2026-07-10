@@ -1,0 +1,34 @@
+## RESUM {.unnumbered .unlisted}
+
+Aquest treball aborda l'estimació dels paràmetres de models d'Equilibri General Dinàmic i Estocàstic (*DSGE*) des de dues angles. El primer és metodològic: es comparen la inferència bayesiana amb el mostrejador *No-U-Turn* (*NUTS*) i una combinació d'Aprenentatge Profund amb Inferència Indirecta. El segon és aplicat: una extensió del model de Cicles Econòmics Reals (*RBC*) per estudiar l'economia submergida a Espanya, estimada via inferència bayesiana.
+
+Abans de treballar amb dades reals, el model es prova sobre dades simulades per comprovar que els paràmetres es poden recuperar. L'estimació amb dades reals situa el sector submergit al voltant del 17% del PIB a Espanya. La pressió impositiva apareix com el principal motor de l'activitat submergida, per davant de factors laborals i regulatoris.
+
+L'últim apartat empra el model per comparar els efectes de diverses intervencions fiscals mitjançant un conjunt d'experiments contrafactuals. Els resultats mostren que no totes les polítiques redueixen l'economia submergida: una rebaixa de l'impost de societats és quasi autofinançable a llarg termini gràcies al canal de formalització, mentre que l'enduriment de la inspecció fiscal té un efecte limitat sobre la quota submergida i no pot substituir la reforma tributària. Això apunta als límits estructurals del que la política fiscal pot aconseguir per si sola, i permet identificar quines reformes són més eficients en termes de reducció de l'economia submergida.
+
+**Paraules clau:** models DSGE, identificació de paràmetres, estimació bayesiana, economia submergida, política fiscal, Espanya.
+
+
+\newpage
+
+## ABSTRACT {.unnumbered .unlisted}
+
+**Title:** Estimation of Dynamic Stochastic General Equilibrium Models: Bayesian Inference and Application to the Underground Economy in Spain
+
+This work approaches the estimation of the parameters of Dynamic and Stochastic General Equilibrium (*DSGE*) models from two points. The first is methodological: Bayesian inference using the *No-U-Turn* sampler (*NUTS*) is compared to a combination of Deep Learning and Indirect Inference to estimate the model parameters. The second is applied: an extension of the Real Business Cycles (*RBC*) model to study the underground economy in Spain, estimated via Bayesian inference.
+
+Before working with real data, the model is tested on simulated data to verify that the parameters can be recovered. The estimation with real data places the underground sector at around 17% of GDP in Spain. Tax pressure appears as the main driver of underground activity, ahead of labor and regulatory factors.
+
+The last section uses the model to compare the effects of various fiscal interventions through a set of counterfactual experiments. The results show that not all policies reduce the underground economy: a corporate tax cut is almost self-financing in the long term thanks to the formalization channel, while tightening tax inspection has a limited effect on the shadow share and cannot replace tax reform. This points to the structural limits of what fiscal policy alone can achieve, and allows us to identify which reforms are most efficient in terms of reducing the shadow economy.
+
+**Keywords:** DSGE models, parameter identification, Bayesian estimation, informal economy, fiscal policy, Spain.
+
+---
+
+**Classificació AMS**
+
+MSC2010: 91B64 (Macroeconomic models), 62F15 (Bayesian inference), 91B51 (Dynamic stochastic general equilibrium theory)
+
+```{=latex}
+\tableofcontents
+```

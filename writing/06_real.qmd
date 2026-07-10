@@ -1,0 +1,217 @@
+# ESTIMACIÓ AMB DADES ESPANYOLES {#sec-real}
+
+Amb el procediment validat al @sec-simulat, aquest capítol construeix les sèries observables per a l'economia espanyola i aplica el model a les dades reals. Aquest capítol descriu primer com s'obté cada sèrie i aplica l'estimació bayesiana al model Orsi-Raggi-Turino sobre dades espanyoles 1996–2024. Donat que la mostra completa inclou el xoc pandèmic de 2020, que genera innovacions excepcionals, s'adopta com a estimació central la mostra pre-COVID (T=96) i es presenta la mostra completa (T=116) com a exercici de robustesa.
+
+## Construcció de les Sèries Observables
+
+El model pot incorporar fins a vuit sèries observables, però per limitacions computacionals s'han hagut de retallar a cinc. Les dues descartades no eren les que aportaven més informació. Aquestes són les cotitzacions socials ($G^s_t$), que queden implícites a la massa salarial bruta ($w^h_t = w_t(1+\tau^s_{ss})$); i la probabilitat d'inspecció ($p_t$), que mostra poca variació temporal a les dades administratives espanyoles.
+
+### Consum privat i inversió
+
+El consum privat ($c_t$) i la inversió bruta ($\text{inv}_t$) provenen de les **Comptes Nacionals Trimestrals harmonitzades d'Eurostat**, que publica els principals agregats de la demanda per a tots els estats membres. S'usen els **volums encadenats amb base 2010** (CLV), que expressen la producció en unitats d'eficiència constant eliminant els efectes de preu, i les sèries estan **desestacionalitzades i ajustades per calendari**, cosa que suprimeix patrons repetitius d'alta freqüència que el model interpretaria erròniament com a xocs tecnològics persistents. La cobertura és trimestral des de 1995-Q1.
+
+### Deflactor del PIB
+
+Diverses sèries (remuneració salarial, recaptació fiscal) estan disponibles únicament en euros nominals. Per convertir-les a termes reals comparables amb les sèries CLV, es construeix el **deflactor del PIB** com el quocient entre el PIB a preus corrents i el PIB en volums encadenats, ambdós extrets de la mateixa taula d'Eurostat. No és cap observable del model: s'usa exclusivament com a índex de preus auxiliar.
+
+### Remuneració dels assalariats
+
+La massa salarial bruta ($w^h_t$) s'obté de la mateixa taula d'Eurostat, a preus corrents i amb ajust estacional. Es deflacta amb el deflactor implícit del PIB i es normalitza per càpita per obtenir la sèrie real per persona en edat de treballar.
+
+### Recaptació de l'IS i l'IRPF
+
+La recaptació de l'Impost de Societats ($G^c_t$) i de l'IRPF ($G^h_t$) provenen de la **Comptabilitat Nacional Trimestral de l'IGAE** (*Operacions no financeres de les Administracions Públiques*), que publica trimestralment els ingressos fiscals en termes de comptabilitat nacional.
+
+Una complicació pràctica és que l'IS presenta **devolucions estacionals concentrades al primer semestre**: quan les empreses regularitzen la declaració anual, la recaptació neta trimestral pot ser negativa o molt baixa. Com que les equacions d'observació treballen en logaritmes, valors no positius trenquen el filtre de Kalman. La solució adoptada és la **suma mòbil de quatre trimestres**:
+
+Aquesta transformació garanteix que la sèrie sigui sempre positiva i elimina la variació estacional mantenint les fluctuacions cícliques que el model vol explicar. S'aplica igualment a l'IRPF per coherència. La primera observació vàlida (amb una suma de quatre trimestres complets) és 1996-Q1.
+
+### Probabilitat d'inspecció fiscal
+
+La probabilitat d'inspecció $p_t$ es construeix com el quocient entre el nombre d'actuacions inspectores de l'AEAT i el nombre d'empreses actives a Espanya:
+
+$$
+p_t = \frac{\text{n. inspeccions AEAT}_t}{\text{n. empreses (SA + SL) INE}_t}
+$$
+
+El numerador prové de les **Memòries Anuals de l'AEAT**, que publiquen anualment el volum d'actuacions del Departament d'Inspecció Financera i Tributària. El denominador prové del **Directori Central d'Empreses (DIRCE) de l'INE**, que publica el cens de societats anònimes (SA) i de responsabilitat limitada (SL) actives a 1 de gener de cada any. Per als anys 1995–2000, el DIRCE no publicava el detall SA+SL amb el format actual; en aquests anys el denominador s'imputa amb la mitjana dels anys 2001–2003. La conversió d'anual a trimestral assumeix que la probabilitat és constant dins l'any.
+
+La sèrie resultant mostra valors al voltant del 2–3% al llarg de tot el període, amb poca variació cíclica. Precisament per aquest motiu s'opta per no incloure aquesta sèrie com a observable directe de l'estimació. El paràmetre d'estat estacionari $p_{ss}$ s'estima igualment, identificat a través de les implicacions d'equilibri general del model.
+
+### Població en edat de treballar
+
+La normalització per càpita s'obté de la **taula demogràfica d'Eurostat**, que publica la població entre 15 i 64 anys a 1 de gener de cada any per a cada estat membre. En ser anual, s'interpola linealment a freqüència trimestral.
+
+## Transformació i Cobertura Temporal
+
+### Equacions d'observació
+
+Seguint les equacions d'observació del model:
+
+$$
+\text{obs}_{x_t} = 100 \times \Delta \ln X^{pc}_t, \quad X \in \{c, \text{inv}, G^c, G^h, w^h\}
+$$
+
+on $X^{pc}_t$ és la sèrie en termes reals per càpita. La primera diferència logarítmica multiplica per 100 per expressar-la en punts percentuals, unitats coherents amb el valor d'estat estacionari $\gamma_{pct}$.
+
+### Cobertura: estimació central (1996-Q1 a 2019-Q4)
+
+El primer període vàlid és **1996-Q1** perquè la suma mòbil de quatre trimestres de l'IS/IRPF requereix quatre trimestres previs (les observacions de 1995 s'usen com a "burn-in"). L'estimació central talla la mostra a **2019-Q4** (pre-COVID) per evitar que el xoc pandèmic del segon trimestre de 2020 contamini les estimacions estructurals (vegeu @sec-robustesa). La mostra central comprèn **T = 96 observacions trimestrals**. Per robustesa, s'aplica de nou l'estimació sobre la mostra completa fins a **2024-Q4 (T = 116)** (@sec-robustesa). El resum complet de fonts i transformacions de cada sèrie es pot trobar a la @tbl-dades de l'annex; l'evolució temporal de cada observable es pot consultar a la @fig-obs-pairs.
+
+
+## Paràmetres Fixats per a l'Economia Espanyola {#sec-params-fixats}
+
+El model distingeix dos tipus de paràmetres: els *estructurals* (preferències i productivitat), que s'estimen per mètodes bayesians perquè no es poden observar directament, i els *institucionals*, que reflecteixen l'estructura fiscal i sancionadora vigent i que es poden aproximar a partir de fonts administratives. A més, dos paràmetres addicionals ($\sigma$ i $B_1$) s'identifiquen molt dèbilment amb les cinc observables disponibles i es calibren externament.
+
+- **$\beta = 0.997$** (factor de descompte). Taxa real dels bons sobirans espanyols a 10 anys deflactats per l'HIPC 1995–2024: $\bar{r}_{trim} \approx 0.29\%$ → $\beta \approx 0.997$. El paper italià usa 0.984, consistent amb tipus reals més elevats al període 1982–2006.
+
+- **$\gamma_{ss} = 1.00$** (creixement tendencial). Absorbit per $\gamma_{pct}$, que s'estima lliurement; simplifica el detrending.
+
+- **$B_0 = 84.7$** (desutilitat del treball total). Calibrat perquè $n^m_{ss}+n^u_{ss} = 0.19$, consistent amb la taxa d'ocupació ajustada per Espanya. $B_0$ i $B_1$ no tenen interpretació quantitativa directa per si sols: únicament en termes relatius converteixen unitats de consum i de treball en utils; el seu valor queda determinat per les condicions d'equilibri del model un cop fixats tots els altres paràmetres.
+
+- **$B_1 = 300$** (cost addicional de desutilitat del treball informal). Calibrat; co-identificat amb $\phi$ a través del treball informal $n^u$, que és latent i no observable directament.
+
+- **$\sigma = 0.99$** (inversa de l'elasticitat de substitució intertemporal). Calibrat; no és identificable sense dades de tipus d'interès entre les cinc observables disponibles. Quan $\sigma \to 1$, la funció d'utilitat CRRA convergeix a la utilitat logarítmica en el consum; el valor 0.99 és per tant equivalent a la log-utilitat per a tota finalitat pràctica. Com a exercici de robustesa, es podria re-estimar el model per a valors de $\sigma$ més elevats, consistents amb l'evidència microempírica sobre l'elasticitat de substitució intertemporal [@guvenenReconcilingConflictingEvidence2006].
+
+- **$\tau^c_{ss} = 0.25$** (tipus efectiu de l'IS). Ràtio quota/base imposable de l'AEAT 1996–2024 oscil·la entre el 22% i el 28%; s'adopta la mitjana del ~25%. El paper italià usa 0.40.
+
+- **$\tau^h_{ss} = 0.23$** (tipus IRPF efectiu). Tipus efectiu de l'assalariat (~17%, Eurostat Tax-Benefit) més cotització a càrrec del treballador (~6.35%, TGSS) ≈ 23%. El paper italià usa 0.35.
+
+- **$\tau^s_{ss} = 0.23$** (cotitzacions socials patronals). Tipus de contingències comunes del Règim General: 23.6% nominal; tipus efectiu sobre cost salarial ~23%. El paper italià usa 0.20.
+
+- **$s = 1.70$** (factor de penalització). LGT arts. 191–193: sanció greu del 100% sobre la quota eludida més interessos de demora ~7.5% assumint detecció als 2 anys; valor conservador. El paper italià usa 1.30.
+
+Els tipus impositius efectius espanyols són sensiblement inferiors als italians ($\tau^c$: 25% vs. 40%; $\tau^h$: 23% vs. 35%), però el factor de penalització és més alt a Espanya, cosa que compensa en part la diferència.
+
+## Estimació Bayesiana amb Dades Reals {#sec-estimacio-real}
+
+### Prioris, Posterioris i Convergència
+
+Les distribucions a priori se segueixen de la Taula 1 d'@OrsiInformal. Les tres principals adaptacions respecte al paper original són: (1) $\gamma_{pct}$ es modela com una Normal truncada centrada al 0.37% trimestral (taxa de creixement tendencial espanyola 1995–2025, lleugerament superior al 0.23% italià 1982–2006); (2) les persistències AR(1) es truncen per sobre de 0.97 per estabilitat numèrica; (3) les variàncies dels xocs segueixen InverseGamma(3, 7.2×10⁻⁵), que centra la desviació estàndard a priori en ~0.6%, d'acord amb la prior del paper original.
+
+La @tbl-prioris-real recull les distribucions a priori, les seves mitjanes, i els resultats de la distribució a posteriori per a l'estimació central (1996-Q1 a 2019-Q4, T=96).
+
+```{=latex}
+\begin{table}[htbp]
+\small
+\centering
+\caption{Distribucions a priori i resultats de la distribució a posteriori (estimació central, 1996-Q1 a 2019-Q4, T=96).}
+\label{tbl-prioris-real}
+\begin{tabular}{lp{4.3cm}ccp{3.6cm}c}
+\toprule
+ & Distribució priori & Mitjana priori & Post. mitjana & IC 95\% & $\hat{R}$ \\
+\midrule
+\multicolumn{6}{l}{\textbf{Estructurals}} \\[2pt]
+$\alpha$          & Beta(1478, 796)                   & 0.650    & \textbf{0.670} & [0.653, 0.688] & 1.000 \\
+$\delta_k$        & Beta(6.1, 236.7)                  & 0.025    & \textbf{0.017} & [0.013, 0.022] & 1.000 \\
+$\alpha_u$        & Beta(1480, 766)                   & 0.659    & \textbf{0.638} & [0.620, 0.655] & 1.000 \\
+$\phi$            & Gamma(400, 0.0025)                & 1.000    & \textbf{0.976} & [0.891, 1.066] & 1.000 \\
+$\xi$             & Gamma(25, 0.04)                   & 1.000    & \textbf{1.984} & [1.697, 2.320] & 1.001 \\
+$\gamma_{pct}$    & N$^+$(0.37, 0.20)                 & 0.370    & \textbf{0.275} & [0.156, 0.398] & 1.001 \\
+$p_{ss}$          & Beta(8.7, 281.3)                  & 0.030    & \textbf{0.026} & [0.011, 0.045] & 1.000 \\[6pt]
+\multicolumn{6}{l}{\textbf{Persistències}} \\[2pt]
+$\rho_a$          & Beta(12, 3)$^{\leq 0.97}$         & 0.800    & \textbf{0.861} & [0.767, 0.932] & 1.000 \\
+$\rho_b$          & Beta(12, 12)$^{\leq 0.97}$        & 0.500    & \textbf{0.519} & [0.313, 0.734] & 1.001 \\
+$\rho_c$          & Beta(7.2, 0.8)$^{\leq 0.97}$      & 0.900    & \textbf{0.946} & [0.912, 0.968] & 1.001 \\
+$\rho_s$          & Beta(7.2, 0.8)$^{\leq 0.97}$      & 0.900    & \textbf{0.933} & [0.911, 0.952] & 1.000 \\
+$\rho_h$          & Beta(7.2, 0.8)$^{\leq 0.97}$      & 0.900    & \textbf{0.967} & [0.957, 0.970] & 1.000 \\
+$\rho_{\xi_h}$    & Beta(13.8, 9.2)$^{\leq 0.97}$     & 0.600    & \textbf{0.600} & [0.397, 0.790] & 1.001 \\
+$\rho_x$          & Beta(12, 3)$^{\leq 0.95}$         & 0.800    & \textbf{0.930} & [0.892, 0.949] & 1.000 \\
+$\rho_p$          & Beta(12, 3)$^{\leq 0.97}$         & 0.800    & \textbf{0.799} & [0.569, 0.950] & 1.001 \\[6pt]
+\multicolumn{6}{l}{\textbf{Variances xocs}} \\[2pt]
+$\sigma^2_a$      & IG(3, 0.000072)                   & 0.000036 & \textbf{0.0001} & [0.0001, 0.0001] & 1.001 \\
+$\sigma^2_b$      & IG(3, 0.000072)                   & 0.000036 & \textbf{0.0000} & ---$^2$         & 1.000 \\
+$\sigma^2_c$      & IG(3, 0.000072)                   & 0.000036 & \textbf{0.0080} & [0.0060, 0.0107] & 1.001 \\
+$\sigma^2_s$      & IG(3, 0.000072)                   & 0.000036 & \textbf{0.0174} & [0.0126, 0.0238] & 1.000 \\
+$\sigma^2_h$      & IG(3, 0.000072)                   & 0.000036 & \textbf{0.0005} & [0.0003, 0.0006] & 1.001 \\
+$\sigma^2_{\xi_h}$& IG(3, 0.000072)                   & 0.000036 & \textbf{0.0000} & [0.0000, 0.0001] & 1.000 \\
+$\sigma^2_x$      & IG(3, 0.000072)                   & 0.000036 & \textbf{0.0000} & ---$^2$         & 1.000 \\
+$\sigma^2_p$      & IG(3, 0.000072)                   & 0.000036 & \textbf{0.0000} & [0.0000, 0.0001] & 1.000 \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize $^2$ IC = [0.0000, 0.0000]; xoc inactiu (posterior col·lapsada al límit inferior de la prior).}
+\end{tabular}
+\end{table}
+```
+
+
+ L'estimació s'ha dut a terme amb 3 cadenes independents de 3.000 iteracions cadascuna (1.000 d'adaptació + 2.000) donant un total de 6.000 mostres posteriors. La convergència és excel·lent per a tots els paràmetres. L'estadístic $\hat{R}$ no supera **1.001** en cap dels 23 paràmetres estimats. La mida efectiva de la mostra és bona i els traceplots mostren una barreja entre les tres cadenes sense patrons. Els gràfics de priori versus posteriori, els traceplots i els corner plots complets es troben a l'@sec-annex-real.
+
+## Resultats {#sec-resultats-real}
+
+### Paràmetres estructurals
+
+Els paràmetres estructurals del model mostren un grau d'identificació desigual per les cinc observables. Els millor identificats per les dades espanyoles són $\alpha$, $\delta_k$, $\alpha_u$, $\xi$ i $\gamma_{pct}$; els que romanen propers a la priori són $\phi$, $p_{ss}$ i $B_1$ (calibrat).
+
+**Elasticitat del treball formal ($\alpha = 0.670$).** La posterior se situa lleugerament per sobre de la priori (0.650), dins d'un IC 95% molt estret [0.653, 0.688].
+
+**Taxa de depreciació del capital ($\delta_k = 0.017$).** La posterior desplaça substancialment la priori cap avall (priori: mitjana=0.025, posterior: 0.017). La depreciació efectiva trimestral del 1.7% equival a un 6.8% anual, per sota del 10% habitual en calibracions estàndard. Aquesta divergència pot reflectir que el model, en explicar la inversió observada amb la volatilitat dels xocs fiscals i de productivitat, necessita una depreciació menor per a reconciliar els fluxos d'inversió amb l'acumulació de capital implícita a les dades espanyoles.
+
+**Elasticitat de substitució formal-informal ($\xi = 1.984$).** És el desplaçament més gran i economicament rellevant. La posterior (mitjana 1.98, IC [1.70, 2.32]) se situa molt per sobre de la priori (mitjana 1.00). Aquesta elasticitat governa la facilitat amb què les llars redistribueixen hores de treball entre el sector formal i l'informal. Un valor de ~2.0 implica que, davant d'un increment de l'1% en el diferencial net de remuneració informal-formal, les llars espanyoles mouen aproximadament el 2% de les seves hores cap al sector informal. Pot interpretar-se com l'elasticitat de Frisch del diferencial laboral formal-informal: la literatura documenta que les elasticitats de Frisch macroeconòmiques tendeixen a ser substancialment més elevades que les microeconòmiques, en part perquè el marge extensiu (entrar i sortir del sector informal) amplifica la resposta agregada [@chettyAreMicroMacro2011].
+
+**Probabilitat d'inspecció en estat estacionari ($p_{ss} = 0.026$).** El valor estimat és proper tant a la priori (0.030) com a les dades administratives de l'AEAT (~2–3%), confirmant que la calibració de la priori era adequada.
+
+### Persistències dels xocs
+
+Les persistències dels xocs fiscals ($\rho_c = 0.946$, $\rho_s = 0.933$, $\rho_h = 0.967$) se situen totes per sobre de 0.90, indicant que els canvis en la política fiscal espanyola són altament persistents: una modificació de l'IS, de les cotitzacions socials o de l'IRPF tarda entre 10 i 30 trimestres a dissipar-se a la meitat. Això és coherent amb la realitat institucional: els tipus fiscals efectius espanyols van ser molt estables durant el període d'entrada a l'euro (1996–2007) i els ajustos posteriors van ser graduals i sovint permanents.
+
+La persistència de la TFP ($\rho_a = 0.861$) és notablement inferior a les persistències fiscals, suggerint que els cicles tecnològics es reverteixen més ràpidament que els fiscals a l'economia espanyola. En contrast, el xoc de preferències ($\rho_b = 0.519$, IC [0.313, 0.734]) mostra la menor persistència i el rang posterior més ampli, indicant identificació dèbil des de les cinc observables disponibles.
+
+### Volatilitats dels xocs
+
+Un resultat destacat és la marcada heterogeneïtat en les volatilitats estimades. Quatre dels vuit xocs del model resulten pràcticament inactius a les dades espanyoles: $\sigma_b$, $\sigma_{\xi_h}$, $\sigma_x$ i $\sigma_p$ convergeixen totes al límit inferior de la prior InverseGamma. Això no és una fallada del model sinó un resultat d'identificació: les fluctuacions observades de consum, inversió, recaptació IS, recaptació IRPF i salaris s'expliquen sense necessitat de xocs de preferències, oferta informal, tecnologia d'inversió ni inspecció. El model és parsimoniós en el nombre de xocs actius.
+
+Els quatre xocs actius mostren volatilitats molt divergents.
+
+- **$\sigma_a = 1.0\%$**: la tecnologia de producció formal és estable; la major part de les fluctuacions s'atribueix a xocs fiscals, no a TFP.
+
+- **$\sigma_c = 8.9\%$**: elevada volatilitat de les pertorbacions a l'IS, reflectint la sensibilitat de la recaptació corporativa al cicle econòmic i les reformes fiscals.
+
+- **$\sigma_s = 13.2\%$**: la volatilitat més gran, associada als xocs de cotitzacions socials. Espanya ha experimentat canvis substantius en les cotitzacions patronals al llarg del període 1996–2019, i el component cíclic de les cotitzacions és amplificat per la variabilitat en l'ocupació.
+
+- **$\sigma_h = 2.2\%$**: volatilitat moderada per als xocs d'IRPF, consistent amb la major estabilitat dels tipus marginals de l'impost sobre la renda en comparació amb l'IS.
+
+## Anàlisi de Robustesa: Mostra COVID versus Pre-COVID {#sec-robustesa}
+
+Per avaluar la sensibilitat dels resultats al xoc pandèmic de 2020, s'aplica de nou l'estimació sobre la mostra completa (1996-Q1 a 2024-Q4, T=116). La @tbl-robustesa compara els paràmetres clau entre les dues estimacions.
+
+Els paràmetres **qualitativament estables** entre les dues mostres —$\alpha$, $\alpha_u$, $\phi$, $p_{ss}$, $\rho_h$, $\sigma^2_c$— confirmen que les conclusions principals del model no depenen de la inclusió de la pandèmia. Els paràmetres **sensibles al COVID** apunten a tres mecanismes diferenciats:
+
+1. **$\delta_k$: 0.017 → 0.032 (+88%).** La caiguda massiva de la inversió el 2020-Q2 (−40% trimestral) i la infrautilització del capital durant els confinaments es tradueix en una depreciació efectiva molt elevada en aquells trimestres. Quan el model intenta explicar la sèrie de consum i inversió amb un xoc únic de depreciació constant, calibra la depreciació permanent cap amunt per acomodar aquella observació extrema. 
+
+2. **$\rho_a$: 0.861 → 0.949 (+10 pp).** La recuperació lenta post-COVID (2021–2022) és interpretada pel model com un xoc tecnològic negatiu molt persistent. Aquesta inflació de la persistència de la TFP és un artefacte: amb la mostra pre-COVID, la TFP mostra cicles de recuperació normal (1998, 2003, 2013), i la posterior és 0.86.
+
+3. **$\sigma^2_s$ i $\sigma^2_h$: +36% i +140% respectivament.** L'any 2020 va registrar una caiguda del 30% en les cotitzacions patronals (ERTEs) i del 25% en l'IRPF, variacions molt per sobre de qualsevol fluctuació anterior. El model infla les volatilitats permanents per acomodar aquestes observacions excepcionals, sobreestimant la volatilitat estructural dels xocs fiscals.
+
+|  | Pre-COVID (T=96) | IC 95% | COVID (T=116) | IC 95% |
+|:---|:---:|:---:|:---:|:---:|
+| $\alpha$ | 0.670 | [0.653, 0.688] | 0.664 | [0.646, 0.682] |
+| $\delta_k$ | **0.017** | [0.013, 0.022] | **0.032** | [0.023, 0.043] |
+| $\alpha_u$ | 0.638 | [0.620, 0.655] | 0.644 | [0.626, 0.662] |
+| $\phi$ | 0.976 | [0.891, 1.066] | 0.949 | [0.870, 1.031] |
+| $\xi$ | 1.984 | [1.697, 2.320] | 2.144 | [1.816, 2.517] |
+| $\gamma_{pct}$ | **0.275** | [0.156, 0.398] | **0.335** | [0.186, 0.491] |
+| $p_{ss}$ | 0.026 | [0.011, 0.045] | 0.027 | [0.013, 0.046] |
+| $\rho_a$ | **0.861** | [0.767, 0.932] | **0.949** | [0.911, 0.969] |
+| $\rho_c$ | 0.946 | [0.912, 0.968] | 0.932 | [0.894, 0.964] |
+| $\rho_s$ | 0.933 | [0.911, 0.952] | 0.951 | [0.928, 0.968] |
+| $\rho_h$ | 0.967 | [0.957, 0.970] | 0.966 | [0.955, 0.970] |
+| $\sigma^2_c$ | 0.0080 | [0.006, 0.011] | 0.0084 | [0.007, 0.011] |
+| $\sigma^2_s$ | **0.0174** | [0.013, 0.024] | **0.0236** | [0.017, 0.031] |
+| $\sigma^2_h$ | 0.0005 | [0.0003, 0.0006] | **0.0012** | [0.0009, 0.0015] |
+
+
+: Comparació de les posteriors entre l'estimació pre-COVID (T=96) i la mostra completa (T=116). {#tbl-robustesa tbl-colwidths="[10,22,22,22,22]"}
+
+Per tots aquests motius, **l'estimació pre-COVID (T=96) és l'estimació de referència** d'aquest treball. La mostra COVID proporciona informació útil com a exercici de sensibilitat, confirmant que els paràmetres estructurals profunds són robustos a la inclusió de la pandèmia.
+
+## Comparació amb els Resultats d'Orsi, Raggi i Turino (2014) {#sec-comparacio-italia}
+
+El model Orsi-Raggi-Turino va ser estimat originalment sobre dades italianes del període 1982–2006, amb set observables. El treball més proper al context espanyol és @herranzTaxEvasionFiscal2023, que estima un model DSGE similar amb evasió fiscal sobre dades espanyoles 1985–2015 i obté una quota de deute públic atribuïble a l'economia submergida d'aproximadament un 23%. La comparació directa paràmetre a paràmetre entre la present estimació i @OrsiInformal és limitada per tres factors: (1) períodes mostrals diferents, (2) nombre d'observables diferent (set vs. cinc), i (3) paràmetres calibrats diferents, especialment els tipus fiscals i el factor de penalització. No obstant, la comparació segueix sent interessant i de valor econòmic.
+
+### Paràmetres estructurals
+
+Les elasticitats de producció $\alpha$ i $\alpha_u$ presenten valors similars entre les dues economies, aquests són estables entre economies europees de renda similar. La diferència més notable és $\xi$: l'elasticitat de substitució formal-informal estimada per a Espanya ($\xi \approx 2.0$) supera la priori del paper ($\xi \approx 1.0$), suggerint que el mercat de treball espanyol té una frontera formal-informal més porosa que l'italià. Aquesta interpretació és coherent amb la recerca sobre dualitat del mercat de treball espanyol, que documenta un pes elevat dels contractes temporals i la facilitat amb que treballadors transiten entre el sector formal i l'informal en funció del cicle.
+
+### Persistències
+
+La persistència de la TFP espanyola ($\rho_a = 0.861$) és inferior a la que el paper obté per a Itàlia (al voltant de 0.90–0.93). Aquesta diferència reflecteix cicles de creixement espanyol més abruptes i reversions més ràpides de la TFP: Espanya va tenir expansions molt ràpides (1996–2007) seguides de caigudes sobtades (2008–2013), mentre que el cicle italià del període 1982–2006 fou menys pronunciat.

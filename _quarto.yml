@@ -1,0 +1,160 @@
+project:
+  type: book
+  output-dir: _output
+
+lang: ca
+
+crossref:
+  fig-title: "Figura"
+  tbl-title: "Taula"
+  eq-title: "Equació"
+
+fig-cap-location: top
+tbl-cap-location: top
+
+book:
+  title: "Estimació de models d'Equilibri General Dinàmic i Estocàstic"
+  author: "Hugo Madrid Rodríguez"
+  date: today
+  chapters:
+    - index.qmd
+    - writing/01_intro.qmd
+    - writing/02_model_rbc.qmd
+    - writing/03_metodologies.qmd
+    - writing/04_orsi.qmd
+    - writing/05_simulat.qmd
+    - writing/06_real.qmd
+    - writing/07_analisis.qmd
+    - writing/08_conclusiones.qmd
+    - writing/99_referencias.qmd
+    - writing/annex.qmd
+
+
+
+bibliography: refs.bib
+nocite: '@*'
+
+format:
+  html:
+    theme: journal
+    css: custom.css
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    html-math-method: mathjax
+
+    echo: false
+    warning: false
+    message: false
+
+  pdf:
+    documentclass: report
+    pdf-engine: xelatex
+    babel-lang: catalan
+    keep-tex: true
+    # estructura — TOC es col·loca manualment a abstract.qmd, després del resum
+    toc: false
+    toc-depth: 2
+    number-sections: true
+
+    # tipografia TFG: Arial 11pt, interlineat 1.25
+    fontsize: 11pt
+    linestretch: 1.25
+
+    geometry:
+      - top=2.5cm
+      - bottom=2.5cm
+      - left=2.5cm
+      - right=2.5cm
+
+    # evita estilo libro
+    classoption:
+      - oneside
+      - openany
+
+    # figuras
+    fig-align: center
+    fig-pos: "htbp"
+
+    # código
+    echo: false
+    warning: false
+    message: false
+
+    include-in-header:
+      text: |
+        % font Arial (TFG: Arial 11pt)
+        \usepackage{fontspec}
+        \setmainfont{Arial}
+
+        \usepackage{amsmath}
+        \usepackage{amsthm}
+        \theoremstyle{definition}
+        \newtheorem{definition}{Definici\'{o}}[chapter]
+        \usepackage{pdflscape}
+        \numberwithin{equation}{chapter}
+        \usepackage{float}
+        \usepackage{placeins}
+
+        \usepackage{microtype}
+
+        % capítols en romans, seccions en aràbics; equacions amb aràbics
+        \renewcommand{\thechapter}{\Roman{chapter}}
+        \renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
+
+        % control de títulos
+        \usepackage{titlesec}
+
+        % CHAPTER  (base 11pt → \large=12pt → \fontsize{13}{15.6} = +1pt)
+        \titleformat{\chapter}
+          {\normalfont\fontsize{13}{15.6}\selectfont\bfseries}
+          {\thechapter.}{0.5em}{}
+
+        % SECTION  (\normalsize=11pt → \large=12pt = +1pt)
+        \titleformat{\section}
+          {\normalfont\large\bfseries}
+          {\thesection}{0.5em}{}
+
+        % SUBSECTION  (\normalsize=11pt → \large=12pt = +1pt)
+        \titleformat{\subsection}
+          {\normalfont\large\itshape}
+          {\thesubsection}{0.5em}{}
+
+        % espaciado
+        \titlespacing*{\chapter}{0pt}{-10pt}{10pt}
+        \titlespacing*{\section}{0pt}{8pt}{4pt}
+        \titlespacing*{\subsection}{0pt}{6pt}{3pt}
+
+        % separació de paràgrafs doble, sense sagnat (norma TFG)
+        \setlength{\parskip}{12pt plus 2pt minus 2pt}
+        \setlength{\parindent}{0pt}
+
+        % profunditat TOC (cal especificar-ho manualment quan toc: false)
+        \setcounter{tocdepth}{2}
+
+        % notes a peu: 2pt per sota del cos (11pt → 9pt)
+        \renewcommand{\footnotesize}{\fontsize{9}{11}\selectfont}
+
+        % elimina color blau (hyperref carregat per Quarto, cal defer)
+        \AtBeginDocument{\hypersetup{hidelinks}}
+
+        % "Font: Elaboració pròpia." al peu de cada figura i taula
+        \usepackage{caption}
+        \DeclareCaptionFormat{withsource}{#1#2#3{\setlength{\parskip}{2pt}\par\noindent\small Font: Elaboració pròpia.}}
+        \captionsetup{format=withsource, position=top, aboveskip=0pt, belowskip=6pt}
+
+        % separació entre figures consecutives (default floatsep=12pt, textfloatsep=20pt)
+        \setlength{\floatsep}{6pt plus 2pt minus 2pt}
+        \setlength{\textfloatsep}{10pt plus 2pt minus 4pt}
+        \setlength{\intextsep}{6pt plus 2pt minus 2pt}
+
+        % permet figures grans (>70% pàgina) a la part superior sense enviar-les
+        % a pàgina exclusiva de floats (default topfraction=0.7, textfraction=0.2)
+        \renewcommand{\topfraction}{0.9}
+        \renewcommand{\bottomfraction}{0.7}
+        \renewcommand{\textfraction}{0.1}
+        \renewcommand{\floatpagefraction}{0.8}
+        \setcounter{topnumber}{3}
+        \setcounter{bottomnumber}{2}
+        \setcounter{totalnumber}{5}
+

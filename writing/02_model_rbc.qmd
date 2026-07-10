@@ -1,0 +1,176 @@
+# EL MODEL DE CICLES REALS (RBC) {#sec-rbc}
+
+Aquest model és el punt de partida de la tradició DSGE moderna, iniciada per @kydlandTimeBuildAggregate1982, i és el més senzill d'aquesta família de models.
+
+En essència, el model considera que els mercats funcionen en competència perfecta, no hi ha cap intervenció governamental ni friccions en els mercats financers, i que les famílies i les empreses maximitzen la seva utilitat i beneficis, respectivament.
+
+L'adjectiu *real* en el nom RBC indica que el model no conté rigideses nominals: tots els preus (salaris, tipus d'interès, preu dels béns) s'ajusten lliurement i de forma instantània, de manera que les variables s'expressen sempre en termes reals. Aquesta és la distinció clau respecte als models Neokeynеsians [@galiMonetaryPolicyInflation2008], que introdueixen rigideses de preus i salaris per explicar la dinàmica de la inflació i els efectes reals de la política monetària. En el model RBC, la política monetària és irrellevant; les fluctuacions econòmiques provenen exclusivament de xocs reals, principalment de productivitat.
+
+La característica fonamental del model és l'**equilibri general**: cada agent pren les seves decisions de forma descentralitzada (les famílies maximitzen utilitat, les empreses maximitzen beneficis), però els mercats imposen que l'oferta i la demanda s'equilibrin en tot moment. Aquesta condició de buidatge de mercat forja l'equilibri dels preus: el salari real i el tipus d'interès del capital s'ajusten fins que les decisions individuals de les famílies i les empreses siguin mútuament compatibles. No és possible entendre el model sense tenir present aquest mecanisme de coordinació descentralitzada.
+
+El model arriba a un equilibri d'estat estacionari, on les variables econòmiques fluctuen al voltant d'aquest punt a causa de xocs de productivitat. Aquestes fluctuacions són el que anomenem cicles econòmics reals, d'aquí el nom del model.
+
+## Les Empreses i el mercat
+
+La producció de les empreses mitjançant treball i capital segueix la funció clàssica Cobb-Douglas:
+
+$$
+y_t = A_t n_t^\alpha k_t^{1-\alpha}
+$$ {#eq-production}
+
+Les empreses produeixen ($y_t$) a partir de capital ($k_t$) i treball ($n_t$), i la productivitat ($A_t$) amplifica aquesta producció. El paràmetre $\alpha$ determina la participació del treball en la producció.
+
+El model suposa que els mercats operen en competència perfecta. Les empreses escullen el treball i el capital per maximitzar beneficis:
+
+$$
+\max_{n_t, k_t} \; \pi_t = y_t - w_t n_t - r^k_t k_t = A_t n_t^\alpha k_t^{1-\alpha} - w_t n_t - r^k_t k_t
+$$
+
+Les condicions de primer ordre d'aquest problema donen les expressions dels preus dels factors:
+
+1.  **Salari real:** $w_t = \alpha \frac{y_t}{n_t}$
+2.  **Tipus d'interès:** $r^k_t = (1-\alpha) \frac{y_t}{k_t}$
+
+
+Tot el que les empreses produeixen es consumeix o s'inverteix és el que s'anomena buidatge del mercat:
+
+$$
+y_t = c_t + i_t
+$$ {#eq-resource}
+
+## Acumulació de Capital i Inversió
+
+Cal definir també com evoluciona la capacitat productiva de l'economia al llarg del temps. Aquesta és la part "dinàmica" del model: les decisions que prenem avui afecten les possibilitats de demà.
+
+L'equació que governa aquesta dinàmica és la **Llei de Moviment del Capital**:
+
+$$
+k_{t+1} = (1-\delta)k_t + i_t
+$$ {#eq-capital}
+
+- **L'Estoc de Capital ($k_t$ i $k_{t+1}$)**
+    El capital representa l'acumulació de béns físics (màquines, edificis, ordinadors) que s'utilitzen per produir. És una variable d'estoc, la qual cosa vol dir que es mesura en un moment concret del temps (al principi del període $t$).
+    Una propietat crucial és que **$k_t$ és predeterminat**: al principi del període $t$, el capital ja està fixat per les decisions d'inversió del passat i no es pot modificar en resposta a xocs que es produeixin en $t$. El que les famílies trien en el moment $t$ és $k_{t+1}$, el capital del període següent. Aquesta predeterminació és la clau per entendre per què els xocs de productivitat tenen efectes reals: davant d'un xoc inesperat, els agents no podien haver ajustat el capital prèviament i han de respondre ajustant el consum i l'oferta de treball.
+    El model assumeix que el capital estalviat avui no es pot fer servir immediatament. La inversió feta en $t$ es converteix en capital productiu en $t+1$.
+
+- **La Depreciació ($\delta$)**
+    El paràmetre $\delta \in (0,1)$ és la **taxa de depreciació física**. Representa la pèrdua de valor i eficiència del capital a causa de l'ús, el pas del temps i l'obsolescència tecnològica.
+    Si una empresa no inverteix res ($i_t=0$), el seu capital no es manté constant, sinó que es redueix geomètricament a una taxa $\delta$.
+
+- **La Inversió ($i_t$)**
+    La inversió és la variable de flux. Representa la quantitat de producció actual ($y_t$) que no es consumeix, sinó que es destina a crear nou capital.
+
+    Fixem-nos que per fer créixer l'economia ($k_{t+1} > k_t$), la inversió bruta ($i_t$) ha de ser superior a la depreciació del capital existent ($\delta k_t$). Si $i_t = \delta k_t$, l'economia es troba en un estat estacionari on només es reposa el que es desprecia.
+
+En resum, l'equació (@eq-capital) és fonamental perquè és el mecanisme que permet a les famílies traslladar riquesa del present al futur. Sense capital ni inversió, no hi hauria manera d'estalviar per "suavitzar" el consum davant dels xocs.
+
+## Les Famílies
+
+Considerem una família representativa que valora dues coses: el consum ($c_t$) i l'oci.
+
+El temps total disponible és 1. Per tant, si la família treballa $n_t$ hores, el temps que li queda per descansar (oci) és $(1 - n_t)$.
+
+La funció d'utilitat que farem servir serà la logarítmica. Les funcions d'utilitat han de ser creixents i còncaves per garantir que tant el consum com l'oci tinguin rendiments decreixents. La família tria cada període les **variables de control** $(c_t, n_t, k_{t+1})$, donats els valors de les **variables d'estat** $(k_t, A_t)$, que ja estan fixats quan es pren la decisió. La funció d'utilitat és:
+
+$$
+\max_{c_t,\, n_t,\, k_{t+1}} \mathbb{E}_0 \sum_{t=0}^{\infty} \beta^t \left[ \ln(c_t) + \gamma \ln(1 - n_t) \right]
+$$ {#eq-utility}
+
+On:[^et-nota]
+
+[^et-nota]: L'operador $\mathbb{E}_t[\cdot]$ denota l'esperança matemàtica condicional a la informació disponible fins al moment $t$: $\mathbb{E}_t[f(x)] \equiv \mathbb{E}[f(x) \mid \Omega_t]$, on $\Omega_t$ és el conjunt d'informació en $t$. Per convenció, qualsevol variable $x_t$ és la realització ja observada al moment $t$; l'incertesa es refereix sempre a valors futurs $x_{t+j}$ amb $j \geq 1$.
+
+- **$\beta$: Factor de descompte.** Quant més valorem el consum present respecte al futur, més petit és $\beta$.
+
+- **$\gamma$:** Pes que li donem a l'oci respecte al consum.
+
+- **$\ln(1-n_t)$: Utilitat de l'oci.** Com més treballem, menys oci tenim i menys utilitat.
+
+La família té una restricció pressupostària: els seus ingressos (salaris i rendes del capital) han de cobrir el consum i la inversió neta:
+
+$$
+\underbrace{w_t n_t + r_t k_t}_{\text{Ingressos}} = c_t + \underbrace{k_{t+1} - (1-\delta)k_t}_{\text{Inversió } i_t}
+$$ {#eq-budget}
+
+És a dir, les famílies guanyen diners treballant ($w_t n_t$) i invertint el seu capital ($r_t k_t$), i aquests diners els gasten en consumir ($c_t$) o en invertir per al futur ($i_t$).
+
+Aquest problema es resol fent l'operador lagrangià i obtenint les condicions d'optimalitat:
+
+$$
+\mathcal{L} = \mathbb{E}_t \left[ \sum_{t=0}^{\infty} \beta^t \left[ \ln(c_t) + \gamma \ln(1 - n_t) + \lambda_t (w_t n_t + r_t k_t - c_t - k_{t+1} + (1-\delta)k_t) \right] \right]
+$$
+$$
+d\mathcal{L}/dc_t = 0 \Rightarrow \lambda_t = \frac{1}{c_t}
+$$
+$$
+d\mathcal{L}/dn_t = 0 \Rightarrow \frac{\gamma c_t}{1 - n_t} = w_t
+$$ {#eq-labor}
+
+$$
+d\mathcal{L}/dk_{t+1} = 0 \Rightarrow \lambda_t = \beta \lambda_{t+1} (r_{t+1} + 1 - \delta)
+$$
+$$
+\Rightarrow \frac{1}{c_t} = \beta \mathbb{E}_t \left[ \frac{r_{t+1} + 1 - \delta}{c_{t+1}} \right]
+$${#eq-euler}
+
+### El Mecanisme de Resolució d'Expectatives
+
+A **l'equació d'Euler (@eq-euler)**, tenim l'operador d'esperança matemàtica condicional, $\mathbb{E}_t$. Aquest és un element crucial perquè introdueix la naturalesa estocàstica i prospectiva del model. Les famílies han de decidir quant consumir i quant estalviar avui (inversió) sense conèixer amb certesa quin serà el tipus d'interès demà ($r_{t+1}$), ja que aquest dependrà dels futurs xocs a l'economia.
+
+Sota la hipòtesi d'expectatives racionals, s'assumeix que els agents no cometen errors sistemàtics de predicció. Utilitzen tota la informació disponible en el moment $t$ (l'estat actual de l'economia) i coneixen l'estructura matemàtica real del model per avaluar el valor esperat de les variables futures. Matemàticament, la resolució d'aquestes expectatives implica que el model no es pot resoldre de manera recursiva simple cap endavant. Les expectatives actuen com un mecanisme de retroalimentació: les decisions actuals depenen del futur esperat, i el futur esperat depèn de les decisions actuals. Això exigeix mètodes de resolució de sistemes d'equacions en diferències estocàstiques (com les aproximacions de Taylor de primer o segon ordre al voltant de l'estat estacionari) per trobar les funcions de política òptima.
+
+## El Xoc de productivitat
+
+L'única font d'incertesa en el model és la productivitat ($A_t$), que segueix un procés AR(1) en logaritmes:
+
+$$
+\ln A_t = (1-\rho)\ln A_{ss} + \rho \ln A_{t-1} + \epsilon_t
+$$ {#eq-shock}
+
+Aquesta equació introdueix la dinàmica no determinista en el model. Dins d'un entorn de cicles reals, la productivitat no és únicament una mesura de la innovació o l'avenç tecnològic pur que augmenta la productivitat, sinó que actua com un terme d'error estructural. La seva funció és absorbir tota la variància de la producció agregada que no es pot explicar mecànicament per l'acumulació de factors tangibles (el capital i el treball).
+
+És a dir, la innovació estocàstica $\epsilon_t$ (assumida normalment com un soroll blanc amb mitjana zero i variància $\sigma_\epsilon^2$) recull xocs d'eficiència, errors d'especificació, alteracions sobtades en l'entorn macroeconòmic i qualsevol fricció externa que alteri la capacitat productiva del país. Sense aquest xoc estocàstic, tota la dinàmica de l'economia seria determinista i convergiria asimptòticament al seu estat estacionari d'equilibri ($A_{ss}$) i s'hi quedaria immòbil de forma permanent. Són aquests xocs sobre la productivitat allò que allunya l'economia del seu estat de repòs, generant les fluctuacions que observem empíricament i que donen nom als cicles econòmics.
+
+## Solució del Model
+
+El model RBC queda completament definit pel sistema d'equacions derivades en les seccions anteriors. La noció d'equilibri que el tanca formalment és la d'**equilibri competitiu**: cada agent pren decisions descentralitzades de forma òptima, i els mercats s'obren a preus que fan compatibles totes les decisions simultàniament.
+
+```{=latex}
+\begin{definition}[Equilibri Competitiu]
+Un equilibri competitiu és un vector de preus $\{w_t, r^k_t\}_{t=0}^{\infty}$ i una assignació $\{c_t, y_t, i_t, k_t, n_t\}_{t=0}^{\infty}$ tals que, donats l'estoc inicial de capital $k_0 > 0$ i una seqüència de productivitat estocàstica $\{A_t\}_{t=0}^{\infty}$ que satisfà l'equació \eqref{eq-shock}:
+\begin{enumerate}
+  \setlength\itemsep{0.25cm}
+  \item Les famílies maximitzen la utilitat intertemporal \eqref{eq-utility} subjecte a (i) la restricció pressupostària \eqref{eq-budget}; (ii) la restricció temporal $n_t \in [0,1]$; i (iii) la llei de moviment del capital \eqref{eq-capital}.
+  \item Les empreses maximitzen beneficis subjecte a la restricció tecnològica \eqref{eq-production}.
+  \item Tots els mercats buiden, és a dir, $\forall t \geq 0$:
+\end{enumerate}
+\begin{align}
+  n^s_t &= n^d_t = n_t \tag{Mercat de treball} \\
+  k^s_t &= k^d_t = k_t \tag{Mercat de capital} \\
+  y_t   &= c_t + i_t   \tag{Mercat de béns}
+\end{align}
+\end{definition}
+```
+
+La clau de l'equilibri general és la condició de buidatge de mercat: és aquesta la que determina els preus $w_t$ i $r^k_t$ com a variables endògenes. Si les famílies volen oferir més treball del que les empreses demanen, el salari caurà fins que les quantitats s'igualin; si la demanda de capital supera l'oferta, el tipus d'interès pujarà. L'equilibri competitiu queda per tant caracteritzat per les condicions d'optimalitat dels agents, la tecnologia de producció, els buidaments de mercat i el procés exogen del xoc.
+
+### El Problema de les Funcions de Política
+
+A diferència d'un sistema d'equacions lineals simple, aquest model **no té una solució analítica tancada** per diverses raons:
+
+1.  **No linealitat:** L'equació d'Euler inclou termes com $1/c_t$, i la producció té exponents fraccionaris.
+
+2.  **Expectatives Racionals:** Les decisions d'avui depenen de les expectatives sobre el futur ($\mathbb{E}_t$), però el futur depèn de les decisions d'avui.
+
+Per "resoldre" el model, el que busquem són les anomenades **Funcions de Política**. Aquestes funcions són regles de decisió que ens diuen què ha de fer l'agent donat l'estat de l'economia:
+
+$$
+c_t = \Psi_c(k_t, A_t)
+$$
+$$
+n_t = \Psi_n(k_t, A_t)
+$$
+
+On $(k_t, A_t)$ són les **variables d'estat** (el que ja tenim quan ens llevem al matí) i $(c_t, n_t)$ són les **variables de control** (el que decidim).
+
+Per trobar la forma exacta d'aquestes funcions $\Psi(\cdot)$ hem d'utilitzar mètodes numèrics per aproximar-les que es detallen al capítol @sec-metodologies.

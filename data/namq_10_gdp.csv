@@ -1,0 +1,373 @@
+DATAFLOW;LAST UPDATE;freq;unit;s_adj;na_item;geo;TIME_PERIOD;GDP;C;I
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1995-Q1;178588.8;136609.5;37941.9
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1995-Q2;179766.0;137592.3;38315.5
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1995-Q3;180561.7;137900.1;38381.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1995-Q4;181928.6;138864.6;38395.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1996-Q1;182974.5;138875.6;38717.7
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1996-Q2;184239.5;140252.5;38902.9
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1996-Q3;185750.8;141396.1;39623.4
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1996-Q4;186674.9;141768.2;39617.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1997-Q1;188536.4;142300.9;40552.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1997-Q2;190237.4;142755.6;41038.9
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1997-Q3;192349.1;143674.2;41481.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1997-Q4;195050.8;148374.5;42454.4
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1998-Q1;196693.3;146925.9;44074.5
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1998-Q2;198853.1;148674.9;44796.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1998-Q3;200747.6;150129.0;46722.2
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1998-Q4;202840.4;155074.5;47752.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1999-Q1;204838.8;153563.5;47770.2
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1999-Q2;207186.4;156122.6;50217.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1999-Q3;210005.1;157662.1;51105.7
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;1999-Q4;212336.7;160384.8;52420.9
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2000-Q1;215690.7;162628.8;52475.1
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2000-Q2;218416.9;162669.3;53906.9
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2000-Q3;220644.6;164436.6;54861.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2000-Q4;223006.4;165345.0;55708.2
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2001-Q1;225271.0;167536.8;55850.5
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2001-Q2;227022.1;169266.4;56544.4
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2001-Q3;229204.6;171071.4;56610.9
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2001-Q4;230663.0;172390.5;57030.5
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2002-Q1;231753.3;173579.1;58150.2
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2002-Q2;233696.0;174803.5;58162.5
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2002-Q3;235005.3;176028.9;59056.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2002-Q4;236840.3;177976.3;59900.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2003-Q1;239122.9;177773.3;60863.4
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2003-Q2;240039.4;179613.2;62095.7
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2003-Q3;241827.3;181483.4;63219.4
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2003-Q4;243855.0;183546.5;64564.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2004-Q1;245281.3;186085.4;64185.6
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2004-Q2;247885.7;187424.7;65013.6
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2004-Q3;249976.6;189855.2;66086.2
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2004-Q4;251750.3;191952.3;66906.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2005-Q1;253999.8;193670.9;68416.6
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2005-Q2;256254.0;196775.7;69692.9
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2005-Q3;258708.4;197739.3;71077.6
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2005-Q4;261261.8;199851.1;71294.6
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2006-Q1;264301.4;201759.9;73599.4
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2006-Q2;266680.2;203879.9;74862.4
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2006-Q3;269197.8;206055.1;75679.1
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2006-Q4;271703.1;208455.3;76703.6
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2007-Q1;274172.5;209983.8;77776.2
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2007-Q2;276578.7;212025.8;78283.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2007-Q3;278651.6;213942.8;78216.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2007-Q4;280353.6;215768.9;78586.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2008-Q1;280877.5;216547.0;77607.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2008-Q2;280976.6;215603.6;76671.9
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2008-Q3;280381.9;213569.0;74383.4
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2008-Q4;276034.0;211704.3;71068.4
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2009-Q1;268652.1;210575.4;65580.6
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2009-Q2;268828.7;209727.5;61114.2
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2009-Q3;269358.2;211046.6;61151.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2009-Q4;269293.1;211210.1;60545.1
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2010-Q1;269052.4;211990.9;59396.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2010-Q2;269384.7;212484.1;59488.9
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2010-Q3;269214.7;211159.6;58773.5
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2010-Q4;269493.2;211420.4;57957.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2011-Q1;269280.8;210409.1;56039.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2011-Q2;268584.2;208822.7;54859.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2011-Q3;266945.4;207883.0;54498.5
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2011-Q4;265441.7;206038.5;52912.1
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2012-Q1;262943.9;205318.4;52578.5
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2012-Q2;260395.2;202257.7;51230.6
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2012-Q3;259199.2;199456.1;49822.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2012-Q4;257049.8;197374.6;49106.9
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2013-Q1;256343.7;195041.4;49120.2
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2013-Q2;256081.3;195480.5;48282.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2013-Q3;255918.9;195369.4;48839.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2013-Q4;256406.0;196626.9;49374.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2014-Q1;257375.5;196605.8;51071.9
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2014-Q2;258765.0;197414.1;51046.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2014-Q3;260834.2;198333.6;50881.6
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2014-Q4;263356.5;199286.1;51163.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2015-Q1;266562.2;201139.8;52734.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2015-Q2;269547.0;202458.0;53958.1
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2015-Q3;272019.3;204502.7;54000.1
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2015-Q4;274449.1;205166.8;54346.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2016-Q1;276354.9;205998.1;54479.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2016-Q2;277269.6;207529.4;54726.7
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2016-Q3;279461.5;208583.9;54535.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2016-Q4;281049.3;209179.1;55669.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2017-Q1;283039.2;211019.0;57140.1
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2017-Q2;285999.5;212407.9;57602.7
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2017-Q3;287805.3;214008.0;59153.2
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2017-Q4;289558.3;215106.6;60325.1
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2018-Q1;290795.8;215949.0;60334.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2018-Q2;292692.2;216956.6;62747.6
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2018-Q3;294326.2;217312.1;63066.9
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2018-Q4;296049.0;217859.6;63269.6
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2019-Q1;297864.3;218022.2;65099.5
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2019-Q2;298723.3;216856.5;65133.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2019-Q3;299295.3;222781.3;65774.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2019-Q4;301003.0;222514.9;65611.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2020-Q1;285418.9;213149.2;64267.5
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2020-Q2;234641.8;179660.9;51533.5
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2020-Q3;271955.1;206280.1;61142.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2020-Q4;273928.9;208493.9;61316.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2021-Q1;277220.6;208931.1;60919.7
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2021-Q2;281021.0;213564.4;60682.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2021-Q3;286560.2;216207.1;61076.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2021-Q4;292381.7;218417.2;61861.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2022-Q1;296976.9;220297.5;63568.4
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2022-Q2;302030.0;222431.3;63407.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2022-Q3;304493.8;223954.3;64512.1
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2022-Q4;306125.9;222838.2;63437.4
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2023-Q1;307687.2;225254.1;66726.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2023-Q2;308129.9;227145.4;67193.5
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2023-Q3;310563.5;229143.3;67863.9
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2023-Q4;313012.1;230158.3;68193.5
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2024-Q1;316496.3;231380.9;69234.3
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2024-Q2;319404.7;233433.9;69553.7
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2024-Q3;321848.7;236514.8;69163.7
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2024-Q4;324467.2;238073.6;71647.7
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2025-Q1;326054.0;239294.4;72301.7
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2025-Q2;328474.4;240834.8;72882.0
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2025-Q3;330587.9;243473.0;74446.8
+ESTAT:NAMQ_10_GDP(1.0);22/04/2026 11:00;Quarterly;Chain linked volumes (2010), million euro;Seasonally and calendar adjusted data;Gross domestic product at market prices;Spain;2025-Q4;333321.7;245131.0;76252.2
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
+;;;;;;;;;;
