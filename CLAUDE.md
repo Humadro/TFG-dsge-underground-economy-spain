@@ -72,15 +72,17 @@ the underground-economy extension) by combining:
    distance `J(Θ)` with Nelder-Mead (non-differentiable objective, since each
    evaluation retrains the network stochastically).
 
-**Where the code is:** deleted from disk, but recoverable from the *original*
-working repo's git history (not this repo's):
-```
-git -C <path-to>/RBC-parameter-identification show cb7f190:code/rbc/DL/dl.jl
-```
-That single file has the full pipeline: model definition (`MacroModelling`),
-policy network, AiO training loop, VAR(1) auxiliary model, and the outer
-Nelder-Mead loop. Also check that repo's `outputs/dl_rbc/` and
-`outputs/bayes_rbc/` (not copied here) for the last figures/results produced.
+**Where the code is:** restored at `code/rbc/DL/dl.jl` (recovered from the
+*original* working repo's git history, `git -C <path-to>/RBC-parameter-identification
+show cb7f190:code/rbc/DL/dl.jl`). It is **not** part of the reproducible
+pipeline in `README.md` — it's kept for reference/future work only, and its
+extra deps (`Lux`, `Zygote`, `Optimisers`) are deliberately **not** in
+`Project.toml`. Add them yourself (`Pkg.add(["Lux", "Zygote", "Optimisers"])`)
+if you resume this line of work. It also expects `data/simulated_data.csv`,
+which doesn't exist in this repo (it read from the old basic-RBC pipeline,
+not the Orsi-Turino one) — path needs updating before it'll run.
+Also check the old repo's `outputs/dl_rbc/` and `outputs/bayes_rbc/` (not
+copied here) for the last figures/results produced.
 
 **Why it was actually dropped (beyond "ran out of time"):** the last run's
 diagnostics, in the old repo at `outputs/dl_rbc/resultats_dl_{sim,real}.txt`,
