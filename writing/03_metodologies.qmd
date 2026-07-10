@@ -1,146 +1,148 @@
-# METODOLOGIES D'ESTIMACIÓ DE PARÀMETRES EN MODELS DSGE {#sec-metodologies}
+# PARAMETER ESTIMATION METHODOLOGIES IN DSGE MODELS {#sec-metodologies}
 
-Un cop definit i caracteritzat el model teòric de Cicle Econòmic Real (RBC), el següent pas és a confrontar el model amb les dades. Les característiques inherents als models DSGE (dinàmica, incertesa, expectatives racionals i no linealitat) fan que l'estimació dels seus paràmetres no es pugui dur a terme mitjançant tècniques economètriques convencionals de forma directa com MQO.
+Once the theoretical Real Business Cycle (RBC) model has been defined and characterized, the next step is to confront the model with the data. The characteristics inherent to DSGE models (dynamics, uncertainty, rational expectations, and nonlinearity) mean that estimating their parameters cannot be done directly using conventional econometric techniques such as OLS.
 
-Aquest capítol presenta una anàlisi comparativa de les diferents estratègies metodològiques disponibles per estimar models DSGE, avaluant-ne els fonaments estadístics, la viabilitat computacional i la implementació pràctica. Ho farem a través de quatre apartats:
+This chapter presents a comparative analysis of the different methodological strategies available for estimating DSGE models, evaluating their statistical foundations, computational feasibility, and practical implementation. We will do so across four sections:
 
- - Problemes fonamentals i limitacions computacionals en l'estimació de paràmetres
+ - Fundamental problems and computational limitations in parameter estimation
 
- - Estimació per Màxima Versemblança (MLE)
+ - Maximum Likelihood Estimation (MLE)
 
- - L'enfocament Bayesià
+ - The Bayesian approach
 
- - Aproximació explorada: Inferència Indirecta amb Aprenentatge Profund
+ - Approach explored: Indirect Inference with Deep Learning
 
 
-## Problemes fonamentals i limitacions computacionals en l'estimació de paràmetres
+## Fundamental Problems and Computational Limitations in Parameter Estimation
 
-1. La Singularitat Estocàstica
+1. Stochastic Singularity
 
-Aixó succeeix quan el model teòric intenta explicar la dinàmica d'un nombre de variables observables superior al nombre de xocs estructurals (pertorbacions exògenes) presents al model. Per exemple, si s'intenta estimar un model RBC bàsic que només conté un xoc de productivitat utilitzant tres sèries temporals (PIB, consum i inversió), el model generarà combinacions lineals exactes entre aquestes variables i aquestes relacions deterministes no es compleixen a les dades. Tal com demostren @SmetsWouters2007, l'única solució pràctica és afegir tants xocs estructurals com variables s'observin, o bé introduir errors de mesura a les equacions d'observació. 
+This occurs when the theoretical model tries to explain the dynamics of a larger number of observable variables than the number of structural shocks (exogenous disturbances) present in the model. For example, if one attempts to estimate a basic RBC model containing only a productivity shock using three time series (GDP, consumption, and investment), the model will generate exact linear combinations among these variables, and these deterministic relationships do not hold in the data. As @SmetsWouters2007 show, the only practical solution is to add as many structural shocks as observed variables, or else introduce measurement errors into the observation equations.
 
-Cal assenyalar que totes les metodologies d'estimació presentades en aquest capítol es basen en mètodes de **solució locals**: el model es linealitza (o s'aproxima a segon ordre) al voltant de l'estat estacionari determinista. Aquesta aproximació és vàlida per a fluctuacions petites i és l'estàndard en la literatura d'estimació de models DSGE. Existeixen alternativament mètodes de **solució globals** com els descrits a @juddSmolyakMethodSolving2014 o les xarxes neuronals descrites a la @sec-dl-ii, que no assumeixen linealitat i que poden ser importants quan s'estudien escenaris de política molt allunyats de l'estat estacionari. En aquest treball, com a la gran majoria de la literatura, s'utilitzen mètodes locals per la seva viabilitat computacional.
+It should be noted that all the estimation methodologies presented in this chapter rely on **local solution** methods: the model is linearized (or approximated to second order) around the deterministic steady state. This approximation is valid for small fluctuations and is the standard approach in the DSGE estimation literature. Alternatively, there exist **global solution** methods, such as those described in @juddSmolyakMethodSolving2014 or the neural networks described in @sec-dl-ii, which do not assume linearity and can matter when studying policy scenarios far from the steady state. In this work, as in most of the literature, local methods are used for their computational feasibility.
 
-Per tant, s'han de tenir al menys tants xocs al model com observables es vulguin fer servir per a l'estimació. En cas contrari, la funció de versemblança serà singular i no es podrà estimar cap paràmetre.
+Therefore, the model must include at least as many shocks as observable variables to be used in estimation. Otherwise, the likelihood function will be singular and no parameter can be estimated.
 
-2. Identificació Feble i Superfícies de Versemblança Planes
+2. Weak Identification and Flat Likelihood Surfaces
 
-@CanovaSala2009 demostren que els models DSGE pateixen greument de problemes d'identificació, tant local com global. Molts paràmetres estructurals tenen efects gairebé idèntics sobre la dinàmica del model. Això fa que, des d'una perspectiva de Màxima Versemblança Clàssica, la funció objectiu presenti regions dificils d'explorar. En conseqüència, els algorismes tradicionals d'optimització basats en gradients fallen, ja que no troben una direcció clara de màxima pendent o es queden atrapats en màxims locals sense significació econòmica.
+@CanovaSala2009 show that DSGE models suffer severely from identification problems, both local and global. Many structural parameters have nearly identical effects on the model's dynamics. This means that, from a Classical Maximum Likelihood perspective, the objective function presents regions that are difficult to explore. As a result, traditional gradient-based optimization algorithms fail, since they cannot find a clear direction of steepest ascent or become trapped in local maxima with no economic meaning.
 
-3. El problema de la resolució iterativa
+3. The Problem of Iterative Solving
 
-A part dels problemes teòrics, hi ha un repte computacional crític relacionat amb el disseny del programari. L'estimació de paràmetres, ja sigui optimitzant l'MLE o mostrejant la distribució a posteriori mitjançant MCMC per a l'estimació bayesiana, exigeix avaluar la versemblança milers o milions de vegades.
+Beyond the theoretical problems, there is a critical computational challenge related to software design. Parameter estimation — whether optimizing the MLE or sampling the posterior distribution via MCMC for Bayesian estimation — requires evaluating the likelihood thousands or millions of times.
 
-La clau de la dificultat rau en el fet que, per a cada iteració o proposta d'un nou conjunt de paràmetres, el model DSGE complet s'ha de tornar a resoldre. Això implica recalcular l'estat estacionari, aplicar tècniques de pertorbació (ex. aproximacions de Taylor de primer o segon ordre) per resoldre les expectatives racionals, construir la nova forma d'espai d'estats i, finalment, fer passar les dades empíriques per un filtre de Kalman per extreure'n la versemblança.
+The crux of the difficulty is that, for every iteration or proposed new set of parameters, the entire DSGE model must be re-solved. This involves recomputing the steady state, applying perturbation techniques (e.g. first- or second-order Taylor approximations) to solve the rational expectations, building the new state-space form, and finally running the empirical data through a Kalman filter to extract the likelihood.
 
-Aquesta exigencia de resoldre el model a cada iteració explica per què no és trivial estimar models DSGE. Tot i existir paquets macroeconòmics (com `Dolo` a Python o `gEcon` a R) per definir i resoldre models, interconnectar eficientment aquests solucionadors externs a l'interior d'un mostrejador MCMC escrit en `PyMC`, `rstan` o `r2jags` trenca el flux de diferenciació automàtica i resulta en una implementació complexa.
+This requirement to re-solve the model at every iteration explains why estimating DSGE models is far from trivial. Although macroeconomic packages exist (such as `Dolo` in Python or `gEcon` in R) for defining and solving models, efficiently interfacing these external solvers with an MCMC sampler written in `PyMC`, `rstan`, or `r2jags` breaks the automatic-differentiation flow and results in a cumbersome implementation.
 
-És en aquest context on Julia (amb biblioteques com  `Turing.jl` i `MacroModelling.jl`) tenen un avantatge. Gràcies a la composabilitat del seu disseny, Julia permet introduir el solucionador d'un model econòmic complet dins de l'algorisme MCMC. Per això, en aquest treball s'ha fet la implementació de l'estimació bayesiana d'un model RBC directament en Julia, evitant la necessitat de trucades externes i maximitzant l'eficiència computacional.
+This is where Julia (with libraries such as `Turing.jl` and `MacroModelling.jl`) has an advantage. Thanks to the composability of its design, Julia allows the solver of a full economic model to be embedded directly inside the MCMC algorithm. For this reason, this work implements the Bayesian estimation of an RBC model directly in Julia, avoiding the need for external calls and maximizing computational efficiency.
 
-## Estimació per Màxima Versemblança (MLE)
+## Maximum Likelihood Estimation (MLE)
 
-L'estimació per Màxima Versemblança te com a objectiu trobar el vector de paràmetres  $\theta$ que maximitza la probabilitat conjunta d'observar la mostra de dades macroeconòmiques $Y^T = \{y_1, y_2, \dots, y_T\}$, donant lloc a la funció de versemblança $L(\theta | Y^T)$.
+Maximum Likelihood Estimation aims to find the parameter vector $\theta$ that maximizes the joint probability of observing the sample of macroeconomic data $Y^T = \{y_1, y_2, \dots, y_T\}$, giving rise to the likelihood function $L(\theta | Y^T)$.
 
-Per avaluar-la, cal resoldre el model teòric i expressar-lo en forma d'espai d'estats, és a dir, trobar les funcions de política $\Psi(\cdot)$ que relacionen les variables d'estat i de control. Aquest procés de resolució implica linealitzar el model al voltant del seu estat estacionari (o utilitzar aproximacions de segon ordre si es vol capturar la no linealitat). Doncs s'aplica el filtre de Kalman per calcular la versemblança de les dades condicionades al un conjunt de paràmetres $\theta$.
+To evaluate it, the theoretical model must be solved and expressed in state-space form, i.e., the policy functions $\Psi(\cdot)$ relating the state and control variables must be found. This solution process involves linearizing the model around its steady state (or using second-order approximations if nonlinearity is to be captured). The Kalman filter is then applied to compute the likelihood of the data conditional on a given set of parameters $\theta$.
 
-Tot i les propietats asimptòtiques teòricament òptimes d'aquest estimador, com la consistència i l'eficiència asimptòtica, la seva aplicació pràctica en models DSGE topa amb obstacles a causa dels problemes d'identificació feble comentats a l'apartat anterior.
+Despite this estimator's theoretically optimal asymptotic properties, such as consistency and asymptotic efficiency, its practical application to DSGE models runs into obstacles due to the weak identification problems discussed in the previous section.
 
-## L'enfocament Bayesià {#sec-bayes}
+## The Bayesian Approach {#sec-bayes}
 
-Per superar la inestabilitat numèrica i els problemes d'identificació de l'enfocament clàssic, la literatura macroeconòmica empírica va fer una transició cap a la inferència bayesiana [@SmetsWouters2007]. En aquest paradigma, els paràmetres estructurals $\theta$ no es tracten com a constants desconegudes, sinó com a variables aleatòries. El teorema de Bayes proporciona el mecanisme per actualitzar les creences sobre aquests paràmetres condicionant-les a les dades observades $Y^T$, combinant la funció de versemblança amb una distribució a priori $p(\theta)$:
+To overcome the numerical instability and identification problems of the classical approach, the empirical macroeconomic literature shifted toward Bayesian inference [@SmetsWouters2007]. In this paradigm, the structural parameters $\theta$ are not treated as unknown constants but as random variables. Bayes' theorem provides the mechanism for updating beliefs about these parameters conditional on the observed data $Y^T$, combining the likelihood function with a prior distribution $p(\theta)$:
 $$
 p(\theta | Y^T) = \frac{L(Y^T | \theta) \, p(\theta)}{p(Y^T)} \propto L(Y^T | \theta) \, p(\theta)
 $$
 
-L'avantatge fonamental d'aquest mètode en l'estimació de models DSGE és la regularització numèrica que aporta la distribució a priori. Això actua com una penalització que guia l'algorisme cap a regions amb sentit econòmic. A més, aquest marc formalitza estadísticament la pràctica tradicional del calibratge macroeconòmic: fixar un paràmetre equival simplement a imposar una distribució a priori amb variància zero centrada al valor que es vol fixar.
+The fundamental advantage of this method for estimating DSGE models is the numerical regularization provided by the prior distribution. This acts as a penalty that guides the algorithm toward economically meaningful regions. Moreover, this framework statistically formalizes the traditional practice of macroeconomic calibration: fixing a parameter is simply equivalent to imposing a prior distribution with zero variance centered at the value one wishes to fix.
 
-### Especificació de les distribucions a priori
+### Specification of the Prior Distributions
 
-L'elecció de les distribucions a priori està prou estandarditzada a la literatura i assigna famílies conjugades en funció del suport natural de cada paràmetre:
+The choice of prior distributions is fairly standardized in the literature, assigning conjugate families according to each parameter's natural support:
 
-- **Beta** per a paràmetres en $(0,1)$: factor de descompte $\beta$, taxa de depreciació $\delta$, persistència del xoc $\rho$.
-- **Gamma** o **Normal** per a paràmetres estrictament positius: desutilitat del treball $\gamma$.
-- **InverseGamma** per a desviacions típiques: volatilitat del xoc $\sigma_\varepsilon$.
-- **Normal** per a paràmetres sense restriccions de signe: taxa de creixement tendencial $\gamma_{trend}$.
+- **Beta** for parameters in $(0,1)$: discount factor $\beta$, depreciation rate $\delta$, shock persistence $\rho$.
+- **Gamma** or **Normal** for strictly positive parameters: labor disutility $\gamma$.
+- **InverseGamma** for standard deviations: shock volatility $\sigma_\varepsilon$.
+- **Normal** for parameters with no sign restriction: trend growth rate $\gamma_{trend}$.
 
-### Mostreig de la distribució a posteriori: NUTS
+### Sampling the Posterior Distribution: NUTS
 
-Com que la distribució a posteriori resultant $p(\theta | Y^T)$ no té solució analítica, la inferència es realitza mitjançant mètodes de Montecarlo de Cadenes de Màrkov (MCMC). En aquest treball s'utilitza el **No-U-Turn Sampler (NUTS)**, una variant adaptativa del Hamiltonià Montecarlo (HMC).
+Since the resulting posterior distribution $p(\theta | Y^T)$ has no analytical solution, inference is carried out using Markov Chain Monte Carlo (MCMC) methods. This work uses the **No-U-Turn Sampler (NUTS)**, an adaptive variant of Hamiltonian Monte Carlo (HMC).
 
-La implementació es realitza amb `Turing.jl`, que crida internament `MacroModelling.jl` per resoldre el model i avaluar la versemblança via el filtre de Kalman a cada proposta del mostrejador. 
+The implementation is carried out with `Turing.jl`, which internally calls `MacroModelling.jl` to solve the model and evaluate the likelihood via the Kalman filter at every proposal of the sampler.
 
-### Diagnòstic de convergència
+### Convergence Diagnostics
 
-La validació de les cadenes MCMC es fa amb tres eines complementàries:
+Validation of the MCMC chains is done using three complementary tools:
 
-- **Estadístic $\hat{R}$ de Gelman-Rubin**: mesura la convergència entre cadenes independents. S'accepta convergència per $\hat{R} < 1.05$.
+- **Gelman-Rubin $\hat{R}$ statistic**: measures convergence across independent chains. Convergence is accepted for $\hat{R} < 1.05$.
 
-- **Traceplots i gràfics de distribució**: inspecció visual de la barreja entre cadenes i la forma de la distribució a posteriori enfront de la priori.
+- **Trace plots and distribution plots**: visual inspection of the mixing across chains and the shape of the posterior distribution relative to the prior.
 
-L'estimació bayesiana és la metodologia finalment emprada per aquest treball i també l'estàndard en treballs macroeconòmics.
+- **Effective Sample Size (ESS)**: measures the number of independent draws in the chain, accounting for autocorrelation. Having at least 400 ESS is considered sufficient for reliable inference. For some parameters, the ESS may be lower due to strong correlations with other parameters, which is a common issue in DSGE models.
 
-## Aproximació explorada: Inferència Indirecta amb Aprenentatge Profund {#sec-dl-ii}
+Bayesian estimation is the methodology ultimately used in this work, and is also the standard in macroeconomic research.
 
-Durant la fase inicial d'aquest treball es va explorar un enfocament metodològic alternatiu a l'estimació bayesiana: la combinació d'un solucionador de models DSGE basat en **aprenentatge profund** (DL) i **Inferència Indirecta** (II) que optimitzava els paràmetres estructurals fent coincidir moments simulats amb moments reals. Aquesta via es va desenvolupar parcialment en Julia, però finalment es va descartar per les raons exposades al final d'aquesta secció. Es documenta aquí perquè la seva comprensió és útil per il·lustrar els reptes computacionals de l'estimació DSGE i per justificar l'elecció definitiva del mètode bayesià. Tot i que és una via molt interessant per explorar en treballs futurs.
+## Approach Explored: Indirect Inference with Deep Learning {#sec-dl-ii}
 
-### El solucionador basat en xarxes neuronals
+During the initial phase of this work, an alternative methodological approach to Bayesian estimation was explored: combining a **deep learning** (DL) based DSGE solver with **Indirect Inference** (II), optimizing the structural parameters by matching simulated moments to real moments. This route was partially developed in Julia, but was ultimately dropped for the reasons set out at the end of this section. It is documented here because understanding it is useful for illustrating the computational challenges of DSGE estimation and for justifying the final choice of the Bayesian method — even though it remains a very interesting avenue to explore in future work.
 
-Els mètodes tradicionals de resolució global de models DSGE pateixen la "maledicció de la dimensionalitat": el cost computacional creix exponencialment a mesura que s'afegeixen variables d'estat o xocs. Per superar aquest obstacle, @maliarDL2021 proposen aproximar les **funcions de política** del model mitjançant xarxes neuronals. S'ha emprat la seva metodologia per trobar el solucionador del model.
+### The Neural-Network-Based Solver
 
-En la implementació desenvolupada, la xarxa rebia com a entrada les dues variables d'estat del model RBC bàsic (el capital acumulat $k_{t-1}$ i la productivitat total dels factors $A_t$) i retornava les decisions òptimes de consum $c_t$ i treball $n_t$:
+Traditional global solution methods for DSGE models suffer from the "curse of dimensionality": computational cost grows exponentially as state variables or shocks are added. To overcome this obstacle, @maliarDL2021 propose approximating the model's **policy functions** using neural networks. Their methodology was used to build the model's solver.
+
+In the implementation developed, the network took as input the two state variables of the basic RBC model (accumulated capital $k_{t-1}$ and total factor productivity $A_t$) and returned the optimal consumption $c_t$ and labor $n_t$ decisions:
 
 $$
 (c_t, n_t) = \Psi_\vartheta(k_{t-1}, A_t)
 $$
 
-on $\vartheta$ denota el vector de pesos de la xarxa neuronal. L'arquitectura consistia en dues capes ocultes de 64 neurones amb activació `ReLU`, i capes de sortida amb activació `softplus` per garantir $c_t > 0$ i `sigmoid` per garantir $n_t \in (0,1)$.
+where $\vartheta$ denotes the neural network's weight vector. The architecture consisted of two hidden layers of 64 neurons with `ReLU` activation, and output layers with `softplus` activation to guarantee $c_t > 0$ and `sigmoid` activation to guarantee $n_t \in (0,1)$.
 
-La xarxa s'entrena exclusivament sobre el **conjunt ergòdic**: les combinacions de $(k, A)$ per on l'economia "transita" realment, obtingudes per simulació al voltant de l'estat estacionari.
+The network is trained exclusively on the **ergodic set**: the combinations of $(k, A)$ through which the economy actually "transits," obtained via simulation around the steady state.
 
-#### L'operador All-in-One i els errors d'Euler
+#### The All-in-One Operator and Euler Errors
 
-El gran repte d'entrenar una xarxa neuronal per resoldre un model DSGE és l'avaluació de les expectatives futures presents a l'equació d'Euler. La funció de pèrdua natural és el quadrat esperat del residu:
+The great challenge in training a neural network to solve a DSGE model is evaluating the future expectations present in the Euler equation. The natural loss function is the expected square of the residual:
 
 $$
 \mathcal{L}(\vartheta) = \mathbb{E}_{(k,A)} \left[ \left( \mathbb{E}_\epsilon [ f(k, A, \epsilon; \vartheta) ] \right)^2 \right]
 $$
 
-on $f(\cdot)$ és el residu de l'equació d'Euler. El problema és l'esperança niuada: avaluar $\mathbb{E}_\epsilon[\cdot]$ dins del quadrat requereix quadratura numèrica interna per a cada punt de l'espai d'estats, cosa que es torna prohibitiva quan hi ha múltiples xocs.
+where $f(\cdot)$ is the residual of the Euler equation. The problem is the nested expectation: evaluating $\mathbb{E}_\epsilon[\cdot]$ inside the square requires internal numerical quadrature at every point of the state space, which becomes prohibitive when there are multiple shocks.
 
-La innovació de @maliarDL2021 és l'**operador d'integració All-in-One (AiO)**: usant dues realitzacions independents del xoc futur $\epsilon_1$ i $\epsilon_2$, s'aprofita que el producte de les esperances és igual a l'esperança del producte per fusionar les dues integrals en una sola:
+The innovation of @maliarDL2021 is the **All-in-One (AiO) integration operator**: using two independent realizations of the future shock $\epsilon_1$ and $\epsilon_2$, it exploits the fact that the product of expectations equals the expectation of the product, merging the two integrals into one:
 
 $$
 \mathcal{L}(\vartheta) = \mathbb{E}_{(k, A, \epsilon_1, \epsilon_2)} \left[ f(k, A, \epsilon_1; \vartheta) \cdot f(k, A, \epsilon_2; \vartheta) \right]
 $$
 
-Gràcies a l'AiO, n'hi ha prou amb extreure per a cada punt del conjunt ergòdic dos xocs futurs independents. La funció de pèrdua s'optimitzava amb l'algorisme ADAM sobre *batches* de 256 punts per iteració, actualitzant els pesos $\vartheta$ mitjançant diferenciació automàtica.
+Thanks to AiO, it suffices to draw two independent future shocks for each point in the ergodic set. The loss function was optimized with the ADAM algorithm over *batches* of 256 points per iteration, updating the weights $\vartheta$ via automatic differentiation.
 
-### El model auxiliar i els moments d'inferència indirecta
+### The Auxiliary Model and Indirect-Inference Moments
 
-La xarxa entrenada resol el model per a un vector donat de paràmetres $\Theta = (\alpha, \beta, \delta, \gamma, \rho)$, però l'objectiu era estimar aquests paràmetres a partir de dades reals. Per fer-ho, es va adoptar el marc de la **Inferència Indirecta** [@gourierouxIndirectInference1993]: es busca el vector $\hat{\Theta}$ que minimitza la distància entre un conjunt de moments calculats sobre dades simulades i els mateixos moments calculats sobre dades reals:
+The trained network solves the model for a given parameter vector $\Theta = (\alpha, \beta, \delta, \gamma, \rho)$, but the goal was to estimate these parameters from real data. To do so, the **Indirect Inference** framework [@gourierouxIndirectInference1993] was adopted: one seeks the vector $\hat{\Theta}$ that minimizes the distance between a set of moments computed on simulated data and the same moments computed on real data:
 
 $$
 \hat{\Theta} = \arg\min_\Theta \; J(\Theta) = \left[ M(\Theta) - M_{\text{real}} \right]' W \left[ M(\Theta) - M_{\text{real}} \right]
 $$
 
-on $W$ és una matriu de pesos definida positivament i $M(\Theta)$ és el vector de moments simulats. Sota condicions de regularitat (model ben identificat i mostra gran), l'estimador II és consistent i asimptòticament normal. @gourierouxIndirectInference1993 aporten dos tests que permeten diagnosticar la qualitat dels moments escollits i la identificació del model per tenir una validació a més de la convergencia de la xarxa i el sentit econòmic dels paràmetres estimats.
+where $W$ is a positive-definite weighting matrix and $M(\Theta)$ is the vector of simulated moments. Under regularity conditions (a well-identified model and a large sample), the II estimator is consistent and asymptotically normal. @gourierouxIndirectInference1993 provide two tests that allow the quality of the chosen moments and the model's identification to be diagnosed, giving a validation check beyond the network's convergence and the economic plausibility of the estimated parameters.
 
- - **El model auxiliar VAR(1).** La primera tria de moments va ser els **coeficients d'un model VAR(1)** estimat sobre les quatre observables del model ($y_t, c_t, i_t, n_t$ en log-desviació de l'estat estacionari). Amb quatre variables i un retard, el VAR genera $4 \times 4 = 16$ coeficients que capturen la dinàmica conjunta i creuada de l'economia. Aquests 16 números constituïen el vector $M(\Theta)$ tant per a les dades simulades com per a les empíriques.
+ - **The VAR(1) auxiliary model.** The first choice of moments was the **coefficients of a VAR(1) model** estimated on the model's four observables ($y_t, c_t, i_t, n_t$ in log-deviation from steady state). With four variables and one lag, the VAR generates $4 \times 4 = 16$ coefficients that capture the joint and cross-dynamics of the economy. These 16 numbers made up the vector $M(\Theta)$ for both the simulated and the empirical data.
 
- - **Moments addicionals suggerits.** També es va plantejar enriquir el conjunt de moments amb estadístics per identificar millor paràmetres o ratis que es compleixen a l'estat estacionari del model. Per a cada model, el conjunt de moments òptim depèn de les dades disponibles i de l'estructura pròpia del model.
+ - **Additional moments suggested.** Enriching the moment set with statistics to better identify parameters, or ratios holding at the model's steady state, was also considered. For each model, the optimal moment set depends on the available data and the model's own structure.
 
-També cal un **optimitzador** per proposar valors de paràmetres. Aquest optimitzador hauria de minimitzar una funció de distància $J(\Theta)$.
+An **optimizer** is also needed to propose parameter values. This optimizer should minimize a distance function $J(\Theta)$.
 
-### Resum de la metodologia proposada
+### Summary of the Proposed Methodology
 
-Per limitacions de temps i computacionals, el mètode no s'ha pogut completar en el marc d'aquest treball. Es documenta aquí com a punt de partida per a investigació futura. El procediment seria:
+Due to time and computational constraints, the method could not be completed within the scope of this work. It is documented here as a starting point for future research. The procedure would be:
 
-1. Entrenar una xarxa neuronal per aproximar les funcions de política del model DSGE amb dades simulades amb el propi model, utilitzant l'operador AiO a la funció de pèrdua per avaluar les expectatives futures. 
+1. Train a neural network to approximate the DSGE model's policy functions using data simulated from the model itself, using the AiO operator in the loss function to evaluate future expectations.
 
-2. Definir un model auxiliar (VAR, moments estacionaris, ratis) que capturi la dinàmica de les variables observables del model (moments depenents del propi model i de les dades disponibles).
+2. Define an auxiliary model (VAR, stationary moments, ratios) that captures the dynamics of the model's observable variables (moments depending on the model itself and the available data).
 
-3. Per a cada proposta de paràmetres $\Theta$, simular el model amb la xarxa neuronal entrenada i calcular els moments del model auxiliar.
+3. For each proposed parameter vector $\Theta$, simulate the model using the trained neural network and compute the auxiliary model's moments.
 
-4. Comparar els moments simulats amb els moments empírics i calcular una funció de distància a optimitzar $J(\Theta)$. Iterar fins convergencia o fins arribar a certa tolèrancia.
+4. Compare the simulated moments with the empirical moments and compute a distance function $J(\Theta)$ to be optimized. Iterate until convergence or until reaching a given tolerance.
 
-A més de ser innovadora, aquesta metodologia presenta l'avantatge que elimina el problema de la dimensionalitat, ja que el nombre de dades reals emprades és completament independent dels xocs del model.
+Besides being innovative, this methodology has the advantage of eliminating the dimensionality problem, since the amount of real data used is completely independent of the model's shocks.

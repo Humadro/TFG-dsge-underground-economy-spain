@@ -2,7 +2,7 @@
 number-sections: false
 ---
 
-# BIBLIOGRAFIA {.unnumbered}
+# REFERENCES {.unnumbered}
 
 ::: {#refs}
 :::

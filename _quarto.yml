@@ -2,18 +2,13 @@ project:
   type: book
   output-dir: _output
 
-lang: ca
-
-crossref:
-  fig-title: "Figura"
-  tbl-title: "Taula"
-  eq-title: "Equació"
+lang: en
 
 fig-cap-location: top
 tbl-cap-location: top
 
 book:
-  title: "Estimació de models d'Equilibri General Dinàmic i Estocàstic"
+  title: "Estimation of Dynamic Stochastic General Equilibrium Models"
   author: "Hugo Madrid Rodríguez"
   date: today
   chapters:
@@ -50,7 +45,7 @@ format:
   pdf:
     documentclass: report
     pdf-engine: xelatex
-    babel-lang: catalan
+    babel-lang: english
     keep-tex: true
     # estructura — TOC es col·loca manualment a abstract.qmd, després del resum
     toc: false
@@ -90,7 +85,7 @@ format:
         \usepackage{amsmath}
         \usepackage{amsthm}
         \theoremstyle{definition}
-        \newtheorem{definition}{Definici\'{o}}[chapter]
+        \newtheorem{definition}{Definition}[chapter]
         \usepackage{pdflscape}
         \numberwithin{equation}{chapter}
         \usepackage{float}
@@ -140,7 +135,7 @@ format:
 
         % "Font: Elaboració pròpia." al peu de cada figura i taula
         \usepackage{caption}
-        \DeclareCaptionFormat{withsource}{#1#2#3{\setlength{\parskip}{2pt}\par\noindent\small Font: Elaboració pròpia.}}
+        \DeclareCaptionFormat{withsource}{#1#2#3{\setlength{\parskip}{2pt}\par\noindent\small Source: own elaboration.}}
         \captionsetup{format=withsource, position=top, aboveskip=0pt, belowskip=6pt}
 
         % separació entre figures consecutives (default floatsep=12pt, textfloatsep=20pt)

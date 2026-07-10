@@ -2,68 +2,68 @@
 number-sections: false
 ---
 
-# ANNEXOS {#sec-annexos}
+# APPENDICES {#sec-annexos}
 
-Aquest annex recull el material de suport al cos principal del treball, organitzat en cinc blocs:
+This appendix gathers supporting material for the main body of the work, organized into five blocks:
 
-- **A.I** Taules de paràmetres i variables del model d'Orsi, Raggi i Turino (2014), per facilitar la lectura del capítol @sec-orsi-turino.
-- **A.II** Diagnòstic complet de l'estimació sobre dades simulades: gràfics de priori versus posteriori, traceplots i corner plots (@sec-simulat).
-- **A.III** Diagnòstic complet de l'estimació sobre dades espanyoles: priori versus posteriori, traceplots i corner plots (@sec-real).
-- **A.IV** Funcions d'impuls-resposta complementàries no incloses al capítol @sec-analisis per raons d'espai.
-- **A.V** Corbes de Laffer per als quatre instruments de política fiscal analitzats al @sec-analisis.
+- **A.I** Tables of parameters and variables of the Orsi, Raggi, and Turino (2014) model, to facilitate reading of @sec-orsi-turino.
+- **A.II** Full diagnostics of the estimation on simulated data: prior-versus-posterior plots, traceplots, and corner plots (@sec-simulat).
+- **A.III** Full diagnostics of the estimation on Spanish data: prior versus posterior, traceplots, and corner plots (@sec-real).
+- **A.IV** Complementary impulse-response functions not included in @sec-analisis for space reasons.
+- **A.V** Laffer curves for the four fiscal policy instruments analyzed in @sec-analisis.
 
-## Paràmetres i Variables del Model Orsi-Raggi-Turino {#sec-annex-orsi}
+## Parameters and Variables of the Orsi-Raggi-Turino Model {#sec-annex-orsi}
 
-### Paràmetres Estructurals ($\texorpdfstring{\Theta}{Theta}$)
+### Structural Parameters ($\texorpdfstring{\Theta}{Theta}$)
 
 ::: {#tbl-orsi-params tbl-colwidths="[10,67,20]"}
-|  | Descripció | Rang/Restricció |
+|  | Description | Range/Restriction |
 | :---: | :--- | :---: |
-| $\beta$ | Factor de descompte subjectiu | $(0, 1)$ |
-| $\sigma$ | Inversa de l'elasticitat de substitució intertemporal | $\sigma > 0$ |
-| $\gamma$ | Taxa de creixement del progrés tecnològic ($\Gamma_t = \gamma \Gamma_{t-1}$) | $\gamma > 1$ |
-| $\alpha, \alpha_u$ | Elasticitat del treball als sectors regular i submergit | $(0, 1)$ |
-| $\delta_k$ | Taxa de depreciació del capital | $(0, 1)$ |
-| $\xi, \phi$ | Inversa de l'elasticitat de l'oferta laboral (reg. i sub.) | $> 0$ |
-| $B_0$ | Pes de la desutilitat del treball total (formal + informal) | $B_0 > 0$ |
-| $B_1$ | Cost addicional de desutilitat específic del treball informal | $B_1 \ge 0$ |
-| $p$ | Probabilitat mitjana estocàstica de ser inspeccionat | $(0, 1)$ |
-| $s$ | Penalització legal o recàrrec sobre l'impost corporatiu evadit | $s > 1$ |
+| $\beta$ | Subjective discount factor | $(0, 1)$ |
+| $\sigma$ | Inverse of the intertemporal elasticity of substitution | $\sigma > 0$ |
+| $\gamma$ | Growth rate of technological progress ($\Gamma_t = \gamma \Gamma_{t-1}$) | $\gamma > 1$ |
+| $\alpha, \alpha_u$ | Labor elasticity in the regular and underground sectors | $(0, 1)$ |
+| $\delta_k$ | Capital depreciation rate | $(0, 1)$ |
+| $\xi, \phi$ | Inverse of labor supply elasticity (total hours and informal-specific, respectively) | $> 0$ |
+| $B_0$ | Weight of total labor disutility (formal + informal) | $B_0 > 0$ |
+| $B_1$ | Additional disutility cost specific to informal labor | $B_1 \ge 0$ |
+| $p$ | Mean stochastic probability of being inspected | $(0, 1)$ |
+| $s$ | Legal penalty or surcharge on evaded corporate tax | $s > 1$ |
 
-: Paràmetres Estructurals del Model Orsi et al.
+: Structural Parameters of the Orsi et al. Model
 :::
 
-### Variables del Sistema
+### System Variables
 
-| Tipus |  | Descripció |
+| Type |  | Description |
 | :--- | :---: | :--- |
-| **Variables d'Estat** | $k_t$ | Estoc de Capital Total a l'inici del període |
-| | $A_t, B_t$ | Xocs estructurals de productivitat |
-| **Variables de Flux / Control** | $y_t, y^m_t, y^u_t$ | Producció (Total, regular i submergida) |
-| | $c_t, i_t$ | Consum privat i inversió bruta agregada |
-| | $n^m_t, n^u_t$ | Hores treballades (formals i informals) |
-| **Variables Fiscals / Política** | $\tau^c_t, \tau^s_t, \tau^h_t$ | Taxes impositives (societats, seg. social, renda) |
-| | $p_t$ | Esforç de monitoratge o probabilitat d'inspecció |
-| **Ingressos Fiscals** | $G^h_t, G^c_t, G^s_t$ | Impostos personals, societats i cotitzacions socials |
-: Classificació de Variables del Model {#tbl-orsi-vars tbl-colwidths="[18,10,68]"}
+| **State Variables** | $k_t$ | Total capital stock at the start of the period |
+| | $A_t, B_t$ | Structural productivity shocks |
+| **Flow / Control Variables** | $y_t, y^m_t, y^u_t$ | Output (total, regular, and underground) |
+| | $c_t, i_t$ | Private consumption and aggregate gross investment |
+| | $n^m_t, n^u_t$ | Hours worked (formal and informal) |
+| **Fiscal / Policy Variables** | $\tau^c_t, \tau^s_t, \tau^h_t$ | Tax rates (corporate, social security, income) |
+| | $p_t$ | Monitoring effort or inspection probability |
+| **Fiscal Revenue** | $G^h_t, G^c_t, G^s_t$ | Personal income tax, corporate tax, and social security contributions |
+: Classification of Model Variables {#tbl-orsi-vars tbl-colwidths="[18,10,68]"}
 
-## Diagnòstic de l'Estimació Simulada {#sec-annex-sim}
+## Diagnostics of the Simulated Estimation {#sec-annex-sim}
 
-### Gràfics de Priori versus Posteriori
+### Prior-versus-Posterior Plots
 
-![Priori vs. Posteriori — Paràmetres estructurals (T=116)](../outputs/orsi/distr_estructurals_sim.png){#fig-distr-est-sim}
-
-```{=latex}
-\FloatBarrier
-```
-
-![Priori vs. Posteriori — Persistències AR(1) (T=116)](../outputs/orsi/distr_persistencies_sim.png){#fig-distr-per-sim}
+![Prior vs. Posterior — Structural parameters (T=116)](../outputs/orsi/distr_estructurals_sim.png){#fig-distr-est-sim}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Priori vs. Posteriori — Desviacions estàndard dels xocs (T=116)](../outputs/orsi/distr_shocks_sim.png){#fig-distr-shk-sim}
+![Prior vs. Posterior — AR(1) persistences (T=116)](../outputs/orsi/distr_persistencies_sim.png){#fig-distr-per-sim}
+
+```{=latex}
+\FloatBarrier
+```
+
+![Prior vs. Posterior — Shock standard deviations (T=116)](../outputs/orsi/distr_shocks_sim.png){#fig-distr-shk-sim}
 
 ```{=latex}
 \FloatBarrier
@@ -71,19 +71,19 @@ Aquest annex recull el material de suport al cos principal del treball, organitz
 
 ### Traceplots
 
-![Traceplots — Paràmetres estructurals (T=116)](../outputs/orsi/trace_estructurals_sim.png){#fig-trace-est-sim}
+![Traceplots — Structural parameters (T=116)](../outputs/orsi/trace_estructurals_sim.png){#fig-trace-est-sim}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Traceplots — Persistències AR(1) (T=116)](../outputs/orsi/trace_persistencies_sim.png){#fig-trace-per-sim}
+![Traceplots — AR(1) persistences (T=116)](../outputs/orsi/trace_persistencies_sim.png){#fig-trace-per-sim}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Traceplots — Desviacions estàndard dels xocs (T=116)](../outputs/orsi/trace_shocks_sim.png){#fig-trace-shk-sim}
+![Traceplots — Shock standard deviations (T=116)](../outputs/orsi/trace_shocks_sim.png){#fig-trace-shk-sim}
 
 ```{=latex}
 \FloatBarrier
@@ -91,62 +91,62 @@ Aquest annex recull el material de suport al cos principal del treball, organitz
 
 ### Corner Plots
 
-![Corner plot — Paràmetres estructurals (T=116)](../outputs/orsi/corner_estructurals_sim.png){#fig-corner-est-sim}
+![Corner plot — Structural parameters (T=116)](../outputs/orsi/corner_estructurals_sim.png){#fig-corner-est-sim}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Corner plot — Persistències AR(1) (T=116)](../outputs/orsi/corner_persistencies_sim.png){#fig-corner-per-sim}
+![Corner plot — AR(1) persistences (T=116)](../outputs/orsi/corner_persistencies_sim.png){#fig-corner-per-sim}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Corner plot — Desviacions estàndard dels xocs (T=116)](../outputs/orsi/corner_shocks_sim.png){#fig-corner-shk-sim}
+![Corner plot — Shock standard deviations (T=116)](../outputs/orsi/corner_shocks_sim.png){#fig-corner-shk-sim}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-## Dades Espanyoles: Fonts i Transformacions {#sec-annex-dades}
+## Spanish Data: Sources and Transformations {#sec-annex-dades}
 
-| Sèrie | Font i filtres |
+| Series | Source and filters |
 |:---|:---|
-| Consum privat | Eurostat NAMQ\_10\_GDP · indicador P3 · CLV 2010 M€ · SCA · Espanya |
-| Inversió bruta | Eurostat NAMQ\_10\_GDP · indicador P51G · CLV 2010 M€ · SCA · Espanya |
-| Remuneració assalariats (D1) | Eurostat NAMQ\_10\_GDP · indicador D1 · CP M€ · SCA · Espanya |
-| Recaptació IS | IGAE, Comptabilitat nacional trimestral, Operacions no financeres de les AAPP |
-| Recaptació IRPF | IGAE, Comptabilitat nacional trimestral, Operacions no financeres de les AAPP |
-| PIB nominal (deflactor implícit) | Eurostat NAMQ\_10\_GDP · indicador B1GQ · CP M€ · SCA · Espanya |
-| Població 15–64 (normalització p.c.) | Eurostat DEMO\_PJANBROAD · grup d'edat Y15-64 · anual · Espanya |
-: Fonts de les dades espanyoles emprades a l'estimació {#tbl-dades}
+| Private consumption | Eurostat NAMQ\_10\_GDP · indicator P3 · CLV 2010 M€ · SCA · Spain |
+| Gross investment | Eurostat NAMQ\_10\_GDP · indicator P51G · CLV 2010 M€ · SCA · Spain |
+| Employee compensation (D1) | Eurostat NAMQ\_10\_GDP · indicator D1 · CP M€ · SCA · Spain |
+| Corporate tax revenue | IGAE, Quarterly National Accounts, Non-financial Transactions of General Government |
+| Personal income tax revenue | IGAE, Quarterly National Accounts, Non-financial Transactions of General Government |
+| Nominal GDP (implicit deflator) | Eurostat NAMQ\_10\_GDP · indicator B1GQ · CP M€ · SCA · Spain |
+| Population 15–64 (per capita normalization) | Eurostat DEMO\_PJANBROAD · age group Y15-64 · annual · Spain |
+: Sources of the Spanish data used in the estimation {#tbl-dades}
 
-### Evolució Temporal de les Sèries Observables
+### Time Evolution of the Observable Series
 
-![Sèries observables en nivells reals per càpita (base 100 = 1996-Q1, esquerra) i en primera diferència logarítmica ×100 (dreta). Les línies puntejades indiquen la base 100 i el zero respectivament.](../outputs/orsi/real_no_covid_post/observable_pairs.png){#fig-obs-pairs}
-
-```{=latex}
-\FloatBarrier
-```
-
-## Diagnòstic de l'Estimació amb Dades Reals {#sec-annex-real}
-
-### Gràfics de Priori versus Posteriori
-
-![Priori vs. Posteriori — Paràmetres estructurals (Espanya, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/distr_estructurals_real.png){#fig-distr-est-real}
+![Observable series in real per capita levels (base 100 = 1996-Q1, left) and in first log-difference ×100 (right). The dotted lines indicate the 100 base and zero, respectively.](../outputs/orsi/real_no_covid_post/observable_pairs.png){#fig-obs-pairs}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Priori vs. Posteriori — Persistències AR(1) (Espanya, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/distr_persistencies_real.png){#fig-distr-per-real}
+## Diagnostics of the Estimation with Real Data {#sec-annex-real}
+
+### Prior-versus-Posterior Plots
+
+![Prior vs. Posterior — Structural parameters (Spain, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/distr_estructurals_real.png){#fig-distr-est-real}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Priori vs. Posteriori — Desviacions estàndard dels xocs (Espanya, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/distr_shocks_real.png){#fig-distr-shk-real}
+![Prior vs. Posterior — AR(1) persistences (Spain, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/distr_persistencies_real.png){#fig-distr-per-real}
+
+```{=latex}
+\FloatBarrier
+```
+
+![Prior vs. Posterior — Shock standard deviations (Spain, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/distr_shocks_real.png){#fig-distr-shk-real}
 
 ```{=latex}
 \FloatBarrier
@@ -154,19 +154,19 @@ Aquest annex recull el material de suport al cos principal del treball, organitz
 
 ### Traceplots
 
-![Traceplots — Paràmetres estructurals (Espanya, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/trace_estructurals_real.png){#fig-trace-est-real}
+![Traceplots — Structural parameters (Spain, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/trace_estructurals_real.png){#fig-trace-est-real}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Traceplots — Persistències AR(1) (Espanya, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/trace_persistencies_real.png){#fig-trace-per-real}
+![Traceplots — AR(1) persistences (Spain, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/trace_persistencies_real.png){#fig-trace-per-real}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Traceplots — Desviacions estàndard dels xocs (Espanya, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/trace_shocks_real.png){#fig-trace-shk-real}
+![Traceplots — Shock standard deviations (Spain, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/trace_shocks_real.png){#fig-trace-shk-real}
 
 ```{=latex}
 \FloatBarrier
@@ -174,92 +174,92 @@ Aquest annex recull el material de suport al cos principal del treball, organitz
 
 ### Corner Plots
 
-![Corner plot — Paràmetres estructurals (Espanya, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/corner_estructurals_real.png){#fig-corner-est-real}
+![Corner plot — Structural parameters (Spain, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/corner_estructurals_real.png){#fig-corner-est-real}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Corner plot — Persistències AR(1) (Espanya, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/corner_persistencies_real.png){#fig-corner-per-real}
+![Corner plot — AR(1) persistences (Spain, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/corner_persistencies_real.png){#fig-corner-per-real}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Corner plot — Desviacions estàndard dels xocs (Espanya, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/corner_shocks_real.png){#fig-corner-shk-real}
+![Corner plot — Shock standard deviations (Spain, 1996–2019)](../outputs/orsi/real_no_covid_3000iter/corner_shocks_real.png){#fig-corner-shk-real}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-## Funcions d'Impuls-Resposta: Xocs Complementaris {#sec-annex-irf}
+## Impulse-Response Functions: Complementary Shocks {#sec-annex-irf}
 
-![IRF davant d'un xoc positiu a l'IRPF ($\tau^h_t$, +1σ). Les magnituds sobre l'output (−0.15 pp) i la quota submergida (+0.2 pp) són aproximadament la meitat de les de l'IS, reflex del canal laboral menys intens que el canal capital.](../outputs/orsi/real_no_covid_post/irf_eps_h.png){#fig-irf-h}
-
-```{=latex}
-\FloatBarrier
-```
-
-![IRF davant d'un xoc positiu a la probabilitat d'inspecció ($p_t$, +1σ). Els multiplicadors sobre totes les variables macroeconòmiques es troben en l'ordre de $10^{-6}$, conseqüència del col·lapse de $\sigma^2_p$ al límit inferior de la prior.](../outputs/orsi/real_no_covid_post/irf_eps_p.png){#fig-irf-p}
+![IRF to a positive personal income tax shock ($\tau^h_t$, +1σ). The magnitudes on output (−0.15 pp) and the underground share (+0.2 pp) are roughly half those of corporate tax, reflecting a labor channel less intense than the capital channel.](../outputs/orsi/real_no_covid_post/irf_eps_h.png){#fig-irf-h}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![IRF davant d'un xoc positiu al factor de preferències intertemporals ($B_t$, +1σ). Actua principalment sobre el consum i l'estalvi; el seu efecte sobre la quota submergida és pràcticament nul (explica menys de l'1,8% de la variança de la quota submergida).](../outputs/orsi/real_no_covid_post/irf_eps_b.png){#fig-irf-b}
+![IRF to a positive inspection probability shock ($p_t$, +1σ). The multipliers on all macroeconomic variables are on the order of $10^{-6}$, a consequence of $\sigma^2_p$ collapsing to the prior's lower bound.](../outputs/orsi/real_no_covid_post/irf_eps_p.png){#fig-irf-p}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![IRF davant d'un xoc positiu al cost d'ajust de la inversió ($\xi^x_t$, +1σ).](../outputs/orsi/real_no_covid_post/irf_eps_x.png){#fig-irf-x}
+![IRF to a positive intertemporal preference factor shock ($B_t$, +1σ). It acts mainly on consumption and saving; its effect on the underground share is practically nil (it explains less than 1.8% of the variance of the underground share).](../outputs/orsi/real_no_covid_post/irf_eps_b.png){#fig-irf-b}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![IRF davant d'un xoc positiu a les preferències laborals ($\xi^h_t$, +1σ).](../outputs/orsi/real_no_covid_post/irf_eps_xi_h.png){#fig-irf-xi-h}
+![IRF to a positive investment adjustment cost shock ($\xi^x_t$, +1σ).](../outputs/orsi/real_no_covid_post/irf_eps_x.png){#fig-irf-x}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-## Corbes de Laffer {#sec-annex-laffer}
-
-![Corba de Laffer de l'IS ($\tau^c$). Baseline: $\hat{\tau}^c_{ss} = 0.25$.](../outputs/orsi/real_no_covid_post/laffer_tau_c_ss.png){#fig-annex-laffer-tauc}
+![IRF to a positive labor preference shock ($\xi^h_t$, +1σ).](../outputs/orsi/real_no_covid_post/irf_eps_xi_h.png){#fig-irf-xi-h}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Corba de Laffer de l'IRPF ($\tau^h$). Baseline: $\hat{\tau}^h_{ss} = 0.23$.](../outputs/orsi/real_no_covid_post/laffer_tau_h_ss.png){#fig-annex-laffer-tauh}
+## Laffer Curves {#sec-annex-laffer}
+
+![Laffer curve for corporate tax ($\tau^c$). Baseline: $\hat{\tau}^c_{ss} = 0.25$.](../outputs/orsi/real_no_covid_post/laffer_tau_c_ss.png){#fig-annex-laffer-tauc}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Corba de Laffer de les cotitzacions socials ($\tau^s$). Baseline: $\hat{\tau}^s_{ss} = 0.23$.](../outputs/orsi/real_no_covid_post/laffer_tau_s_ss.png){#fig-annex-laffer-taus}
+![Laffer curve for personal income tax ($\tau^h$). Baseline: $\hat{\tau}^h_{ss} = 0.23$.](../outputs/orsi/real_no_covid_post/laffer_tau_h_ss.png){#fig-annex-laffer-tauh}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Corba de Laffer de la probabilitat d'inspecció ($p$). Baseline: $\hat{p}_{ss} = 0.026$.](../outputs/orsi/real_no_covid_post/laffer_p_ss.png){#fig-annex-laffer-p}
+![Laffer curve for social security contributions ($\tau^s$). Baseline: $\hat{\tau}^s_{ss} = 0.23$.](../outputs/orsi/real_no_covid_post/laffer_tau_s_ss.png){#fig-annex-laffer-taus}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-## Annex de transparència
+![Laffer curve for the inspection probability ($p$). Baseline: $\hat{p}_{ss} = 0.026$.](../outputs/orsi/real_no_covid_post/laffer_p_ss.png){#fig-annex-laffer-p}
 
-En compliment dels principis de transparència i integritat acadèmica, aquest annex detalla l'ús de models de llenguatge d'intel·ligència artificial (IA) durant el desenvolupament d'aquest Treball de Final de Grau. L'eina s'ha integrat principalment com un instrument de suport tècnic i analític. 
+```{=latex}
+\FloatBarrier
+```
 
-D'una banda, s'ha emprat com a assistent de programació. Aquest ús s'ha limitat a la millora de l'eficiència computacional, i a l'ús del llenguatge `julia`, desconegut per mi fins a l'inici del treball. En tot moment s'han fet revisions del codi proposat i s'ha entés la lògica dels programes generats.
+## Transparency Appendix
 
-D'altra banda, la IA ha exercit un rol d'interlocutor analític per debatre la interpretació econòmica dels resultats i les dinàmiques estructurals del model. Aquesta interacció s'ha abordat des d'una posició molt excèptica exigint justificacions completes per entendre correctament les dinàmiques del model econòmic. A més, en certs moments s'han confrontat els arguments de dos models d'IA independents. Aquest exercici de "debat" simulat ha ajudat a entendre millor conceptes quan una sola IA no em proporcionava una resposta suficientment satisfactòria. 
+In compliance with the principles of transparency and academic integrity, this appendix details the use of artificial intelligence (AI) language models during the development of this Bachelor's Thesis. The tool has been integrated mainly as a technical and analytical support instrument.
 
-En tot moment, s'ha mantingut un esperit crític i analític, evitant acceptar respostes sense una comprensió completa del context econòmic i estadístic.
+On one hand, it has been used as a programming assistant. This use was limited to improving computational efficiency and to using the `Julia` language, which was unfamiliar to me before starting this work. The proposed code was reviewed at every step, and the logic of the generated programs was understood.
 
-## Codis de programació
+On the other hand, the AI has played the role of an analytical interlocutor to discuss the economic interpretation of the results and the model's structural dynamics. This interaction was approached from a highly skeptical stance, demanding complete justifications in order to correctly understand the dynamics of the economic model. Furthermore, at certain points the arguments of two independent AI models were pitted against each other. This simulated "debate" exercise helped clarify concepts when a single AI did not provide a sufficiently satisfactory answer.
 
-Tot el codi d'implementació es pot consultar al repositori de GitHub: [https://github.com/Humadro/TFG-Estimacio-parametres-DSGE]. Es troben diferents fitxers: la definició del model (`orsi.jl`), la generació i càrrega de dades (`load_real_data.jl`, `simulate_data.jl`), l'estimació bayesiana sobre dades simulades i reals (`bayesian_estimation_orsi_real/sim.jl`), la verificació de l'estat estacionari (`check_steady_state.jl`), i l'anàlisi posterior (`post_analysis.jl`, `counterfactual.jl`), que inclou les funcions d'impuls-resposta, les descomposicions de variança i històrica, les corbes de Laffer i l'anàlisi contrafactual.
+At all times, a critical and analytical mindset was maintained, avoiding the acceptance of answers without a complete understanding of the economic and statistical context.
+
+## Code
+
+All implementation code can be found in the GitHub repository: [https://github.com/Humadro/TFG-dsge-underground-economy-spain]. It contains several files: the model definition (`code/orsi.jl`), data generation and loading (`code/load_real_data_orsi.jl`, `code/simulate_data_orsi.jl`), the Bayesian estimation on simulated and real data (`code/bayes/bayesian_estimation_orsi_sim.jl`, `code/bayes/bayesian_estimation_orsi_real.jl`), steady-state verification (`code/check_steady_state.jl`), and the post-estimation analysis (`code/post_analisis/post_analisis.jl`, `code/post_analisis/counterfactuals.jl`), which includes the impulse-response functions, the variance and historical decompositions, the Laffer curves, and the counterfactual analysis.

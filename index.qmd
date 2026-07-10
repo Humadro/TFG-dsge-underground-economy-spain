@@ -1,15 +1,3 @@
-## RESUM {.unnumbered .unlisted}
-
-Aquest treball aborda l'estimació dels paràmetres de models d'Equilibri General Dinàmic i Estocàstic (*DSGE*) des de dues angles. El primer és metodològic: es comparen la inferència bayesiana amb el mostrejador *No-U-Turn* (*NUTS*) i una combinació d'Aprenentatge Profund amb Inferència Indirecta. El segon és aplicat: una extensió del model de Cicles Econòmics Reals (*RBC*) per estudiar l'economia submergida a Espanya, estimada via inferència bayesiana.
-
-Abans de treballar amb dades reals, el model es prova sobre dades simulades per comprovar que els paràmetres es poden recuperar. L'estimació amb dades reals situa el sector submergit al voltant del 17% del PIB a Espanya. La pressió impositiva apareix com el principal motor de l'activitat submergida, per davant de factors laborals i regulatoris.
-
-L'últim apartat empra el model per comparar els efectes de diverses intervencions fiscals mitjançant un conjunt d'experiments contrafactuals. Els resultats mostren que no totes les polítiques redueixen l'economia submergida: una rebaixa de l'impost de societats és quasi autofinançable a llarg termini gràcies al canal de formalització, mentre que l'enduriment de la inspecció fiscal té un efecte limitat sobre la quota submergida i no pot substituir la reforma tributària. Això apunta als límits estructurals del que la política fiscal pot aconseguir per si sola, i permet identificar quines reformes són més eficients en termes de reducció de l'economia submergida.
-
-**Paraules clau:** models DSGE, identificació de paràmetres, estimació bayesiana, economia submergida, política fiscal, Espanya.
-
-
-\newpage
 
 ## ABSTRACT {.unnumbered .unlisted}
 
@@ -25,9 +13,25 @@ The last section uses the model to compare the effects of various fiscal interve
 
 ---
 
-**Classificació AMS**
+
+**AMS Classification**
 
 MSC2010: 91B64 (Macroeconomic models), 62F15 (Bayesian inference), 91B51 (Dynamic stochastic general equilibrium theory)
+
+\newpage
+
+## RESUM {.unnumbered .unlisted}
+
+Aquest treball aborda l'estimació dels paràmetres de models d'Equilibri General Dinàmic i Estocàstic (*DSGE*) des de dues angles. El primer és metodològic: es comparen la inferència bayesiana amb el mostrejador *No-U-Turn* (*NUTS*) i una combinació d'Aprenentatge Profund amb Inferència Indirecta. El segon és aplicat: una extensió del model de Cicles Econòmics Reals (*RBC*) per estudiar l'economia submergida a Espanya, estimada via inferència bayesiana.
+
+Abans de treballar amb dades reals, el model es prova sobre dades simulades per comprovar que els paràmetres es poden recuperar. L'estimació amb dades reals situa el sector submergit al voltant del 17% del PIB a Espanya. La pressió impositiva apareix com el principal motor de l'activitat submergida, per davant de factors laborals i regulatoris.
+
+L'últim apartat empra el model per comparar els efectes de diverses intervencions fiscals mitjançant un conjunt d'experiments contrafactuals. Els resultats mostren que no totes les polítiques redueixen l'economia submergida: una rebaixa de l'impost de societats és quasi autofinançable a llarg termini gràcies al canal de formalització, mentre que l'enduriment de la inspecció fiscal té un efecte limitat sobre la quota submergida i no pot substituir la reforma tributària. Això apunta als límits estructurals del que la política fiscal pot aconseguir per si sola, i permet identificar quines reformes són més eficients en termes de reducció de l'economia submergida.
+
+**Paraules clau:** models DSGE, identificació de paràmetres, estimació bayesiana, economia submergida, política fiscal, Espanya.
+
+
+
 
 ```{=latex}
 \tableofcontents
