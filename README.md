@@ -37,9 +37,11 @@ All scripts below assume the **repository root** as the working directory
 
 ## Reproduction pipeline
 
-`outputs/` and the derived `data/orsi/*.csv` files are already checked in,
-so `quarto render` works out of the box without rerunning anything. To
-regenerate them from raw data, run the following in order:
+`outputs/` is already checked in (the figures/tables the book embeds), so
+`quarto render` works out of the box without running any Julia at all. The
+derived `data/orsi/*.csv` files are **not** checked in — only the raw
+sources under `data/` are — since they regenerate in seconds. To regenerate
+everything from raw data, run the following in order:
 
 1. **Prepare real data**
    ```
@@ -56,6 +58,15 @@ regenerate them from raw data, run the following in order:
    ```
    Writes `data/orsi/simulated_data_orsi.csv` and
    `outputs/orsi/observables_simulats.png`.
+
+   **Reproducibility note:** step 1 is bit-for-bit deterministic — no RNG
+   involved, so `real_data_orsi.csv` will always match exactly regardless of
+   package versions. Step 2 seeds `Random.seed!(2024)` but is **not**
+   guaranteed bit-identical across Julia/package versions, since no
+   `Manifest.toml` is checked in (a fresh `Pkg.instantiate()` can resolve
+   different dependency versions, which changes how the RNG stream is
+   consumed). This only matters if you rerun step 3 below from scratch —
+   it does not affect the already-checked-in book figures.
 
 3. **Bayesian estimation — simulated data**
    ```
