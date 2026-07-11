@@ -68,7 +68,7 @@ $$
 y^u_{i,t} = B_t (\Gamma_t n^u_{i,t})^{\alpha_u} (k^u_{i,t})^{1-\alpha_u}
 $$ {#eq-prod_sub}
 
-where $B_t$ is a transitory productivity shock specific to the underground sector and $\alpha_u \in (0,1]$ is its labor elasticity. The existence of sector-specific technologies and shocks allows the model to incorporate important cross-sector differences in productivity, reflecting empirical evidence such as the high intensity of low-skilled labor in irregular markets.
+where $B_t$ is a transitory productivity shock specific to the underground sector and $\alpha_u \in (0,1)$ is its labor elasticity. The existence of sector-specific technologies and shocks allows the model to incorporate important cross-sector differences in productivity, reflecting empirical evidence such as the high intensity of low-skilled labor in irregular markets.
 
 The firm's total output is the sum of both types of production:
 
@@ -89,8 +89,8 @@ $$ {#eq-total-cost}
 $$
 NR(y_{i,t}) =
 \begin{cases}
-y^m_{i,t} - \tau^c_t\bigl(y^m_{i,t} - w^m_t n^m_{i,t}\bigr) + y^u_{i,t} - s\tau^c_t\bigl(y^u_{i,t} - w^u_t n^u_{i,t}\bigr) & \text{if detected} \\[4pt]
-y^m_{i,t} - \tau^c_t\bigl(y^m_{i,t} - w^m_t n^m_{i,t}\bigr) + y^u_{i,t} & \text{otherwise}
+y^m_{i,t} - \tau^c_t\bigl(y^m_{i,t} - w^m_t n^m_{i,t}\bigr) + y^u_{i,t} - s\tau^c_t\bigl(y^u_{i,t} - w^u_t n^u_{i,t}\bigr) & \text{if detected }(p_t) \\[4pt]
+y^m_{i,t} - \tau^c_t\bigl(y^m_{i,t} - w^m_t n^m_{i,t}\bigr) + y^u_{i,t} & \text{otherwise }(1-p_t)
 \end{cases}
 $$ {#eq-net-revenue}
 

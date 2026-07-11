@@ -127,7 +127,7 @@ everything from raw data, run the following in order:
 quarto render
 ```
 
-Output goes to `_output/` (HTML + PDF, per `_quarto.yml`).
+Output goes to `_output/` (PDF only, per `_quarto.yml`).
 
 ## What was deliberately left out
 

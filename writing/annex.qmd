@@ -51,19 +51,19 @@ This appendix gathers supporting material for the main body of the work, organiz
 
 ### Prior-versus-Posterior Plots
 
-![Prior vs. Posterior — Structural parameters (T=116)](../outputs/orsi/distr_estructurals_sim.png){#fig-distr-est-sim}
+![Prior vs. Posterior — Structural parameters (T=116)](../outputs/orsi/simulated/distr_estructurals_sim.png){#fig-distr-est-sim}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Prior vs. Posterior — AR(1) persistences (T=116)](../outputs/orsi/distr_persistencies_sim.png){#fig-distr-per-sim}
+![Prior vs. Posterior — AR(1) persistences (T=116)](../outputs/orsi/simulated/distr_persistencies_sim.png){#fig-distr-per-sim}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Prior vs. Posterior — Shock standard deviations (T=116)](../outputs/orsi/distr_shocks_sim.png){#fig-distr-shk-sim}
+![Prior vs. Posterior — Shock standard deviations (T=116)](../outputs/orsi/simulated/distr_shocks_sim.png){#fig-distr-shk-sim}
 
 ```{=latex}
 \FloatBarrier
@@ -71,19 +71,19 @@ This appendix gathers supporting material for the main body of the work, organiz
 
 ### Traceplots
 
-![Traceplots — Structural parameters (T=116)](../outputs/orsi/trace_estructurals_sim.png){#fig-trace-est-sim}
+![Traceplots — Structural parameters (T=116)](../outputs/orsi/simulated/trace_estructurals_sim.png){#fig-trace-est-sim}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Traceplots — AR(1) persistences (T=116)](../outputs/orsi/trace_persistencies_sim.png){#fig-trace-per-sim}
+![Traceplots — AR(1) persistences (T=116)](../outputs/orsi/simulated/trace_persistencies_sim.png){#fig-trace-per-sim}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Traceplots — Shock standard deviations (T=116)](../outputs/orsi/trace_shocks_sim.png){#fig-trace-shk-sim}
+![Traceplots — Shock standard deviations (T=116)](../outputs/orsi/simulated/trace_shocks_sim.png){#fig-trace-shk-sim}
 
 ```{=latex}
 \FloatBarrier
@@ -91,19 +91,19 @@ This appendix gathers supporting material for the main body of the work, organiz
 
 ### Corner Plots
 
-![Corner plot — Structural parameters (T=116)](../outputs/orsi/corner_estructurals_sim.png){#fig-corner-est-sim}
+![Corner plot — Structural parameters (T=116)](../outputs/orsi/simulated/corner_estructurals_sim.png){#fig-corner-est-sim}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Corner plot — AR(1) persistences (T=116)](../outputs/orsi/corner_persistencies_sim.png){#fig-corner-per-sim}
+![Corner plot — AR(1) persistences (T=116)](../outputs/orsi/simulated/corner_persistencies_sim.png){#fig-corner-per-sim}
 
 ```{=latex}
 \FloatBarrier
 ```
 
-![Corner plot — Shock standard deviations (T=116)](../outputs/orsi/corner_shocks_sim.png){#fig-corner-shk-sim}
+![Corner plot — Shock standard deviations (T=116)](../outputs/orsi/simulated/corner_shocks_sim.png){#fig-corner-shk-sim}
 
 ```{=latex}
 \FloatBarrier
